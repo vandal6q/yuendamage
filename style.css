@@ -1,20 +1,20 @@
 @charset "utf-8";
 
-* {
+/* * {
   margin: 0;
   padding: 0;
-}
+} */
 
-.column {
+/* .column {
   float: left;
-}
+} */
 
-.separator {
+/* .separator {
   clear: left;
-}
+} */
 
-[class^="box"] {
-  margin: 8px 8px 0;
+.column{
+  margin: 5px 0px !important;
 }
 
 .box-friend,
@@ -26,15 +26,15 @@
   display: none;
 }
 
-table {
+/* table {
   border-collapse: collapse;
-}
+} */
 
-th, td {
+/* th, td {
   font-weight: normal;
   text-align: left;
   vertical-align: top;
-}
+} */
 
 input[type="radio"],
 input[type="checkbox"] {
@@ -52,14 +52,10 @@ input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-.title {
-  font-size: 115%;
-}
-
-.box-situation label {
+/* .box-situation label {
   float: left;
   margin: 0 4px 0 0;
-}
+}  */
 
 .heading {
   font-weight: bold;

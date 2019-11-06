@@ -5,695 +5,706 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Semantic UIの読み込み -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.css">
   </head>
   <body>
-    <div class="box-title">
-      <h1 class="title">悠遠物語ダメージ計算機</h1>
-    </div>
-    <div class="box-situation">
-      <label><input type="radio" name="situation" onchange="situationChange()" checked>物理与ダメージ</label>
-      <label><input type="radio" name="situation" onchange="situationChange()">物理被ダメージ</label>
-      <label><input type="radio" name="situation" onchange="situationChange()">魔法与ダメージ</label>
-      <label><input type="radio" name="situation" onchange="situationChange()">魔法被ダメージ</label>
-    </div>
-    <div class="separator"></div>
-    <div class="column">
-      <div class="box-friend">
-        <table><tr><th class="heading">味方</th></tr></table>
-        <div id="friendPhysY">
-          <table>
-            <tr><th>ATK:</th><td><input type="number" id="friendPhysYAtk" onchange="result()"></td></tr>
-            <tr><th>CRI:</th><td><input type="number" id="friendPhysYCri" onchange="result()"></td></tr>
-          </table>
-          <table>
-            <tr>
-              <th>物理攻撃名:</th>
-              <td>
-                <select id="friendPhysYAtack" onchange="friendPhysYAtackChange()">
-                  <option value="unselected;"></option>
-                  <option value="100;100;1+;-">通常攻撃</option>
-                  <option value="150;100;1;-">スタンショック</option>
-                  <option value="10;100;1;-">アイテムスティール</option>
-                  <option value="95;70;2;-">スラッシュ</option>
-                  <option value="100;16;3;-">ギガントブレイク(1~3段目)</option>
-                  <option value="100;50;2;-">ギガントブレイク(4,5段目)</option>
-                  <option value="100;150;1;-">ギガントブレイク(6段目)</option>
-                  <option value="70;100;2;-">ダブルスラスト</option>
-                  <option value="100;70;5;-">イーグルドライブ</option>
-                  <option value="100;90;1;-">チャージアロー(最小)</option>
-                  <option value="100;290;1;-">チャージアロー(最大)</option>
-                  <option value="100;140;1;-">スパイラルショット(1段目)</option>
-                  <option value="100;60;6;-">スパイラルショット(拡散)</option>
-                  <option value="260;100;1;-">アッパースイング</option>
-                  <option value="100;100;1;-">ブレイクバースト(通常)</option>
-                  <option value="1500;100;1;-">ブレイクバースト(大ダメージ)</option>
-                  <option value="4;100;1;闇属性攻撃魔法表記だが実際は無属性物理スキル">ローバークラウド</option>
-                  <option value="80;100;2;-">散斬</option>
-                  <option value="80;60;3;-">双塵乱舞(1~3段目)</option>
-                  <option value="110;100;1;-">双塵乱舞(4段目)</option>
-                  <option value="100;190;1;-">一閃翔破</option>
-                  <option value="170;250;1;-">鬼神撃</option>
-                  <option value="100;150;1;-">爆牙(近)</option>
-                  <option value="40;100;1;-">爆牙(遠)</option>
-                  <option value="200;100;2+;-">フェンリル召喚(通常攻撃)</option>
-                  <option value="100;100;15+;範囲内の敵の数nに対して対象ランダムの13+2n回攻撃(最大31回)">紅蓮華(1~15+段目)</option>
-                  <option value="300;100;2+;-">エンシェントドラゴン(通常攻撃)</option>
-                  <option value="10;100;1;-">ぬすっとグローブ</option>
-                </select>
-              </td>
-            </tr>
-          </table>
-          <table>
-            <tr><th>ATK倍率:</th><td><input type="number" id="friendPhysYAtackAtk" onchange="result()"></td></tr>
-            <tr><th>威力倍率:</th><td><input type="number" id="friendPhysYAtackPower" onchange="result()"></td></tr>
-          </table>
-          <table>
-            <tr><th id="friendPhysYElemDamageHeading">対属性ダメージ増減:</th>
-                <td><input type="number" id="friendPhysYElemDamage" placeholder="0" onchange="friendPhysYElemDamageChange()">%</td></tr>
-          </table>
-          <table>
-            <tr><th id="friendPhysYTypeDamageHeading">対種族ダメージ増減:</th>
-                <td><input type="number" id="friendPhysYTypeDamage" placeholder="0" onchange="friendPhysYTypeDamageChange()">%</td></tr>
-          </table>
+    <div class="ui main container">
+      <h1 class="title ui header box-title">悠遠物語ダメージ計算機</h1>
+      <div class="ui segment box-situation">
+        <label><input type="radio" name="situation" onchange="situationChange()" checked>物理与ダメージ</label>
+        <label><input type="radio" name="situation" onchange="situationChange()">物理被ダメージ</label>
+        <label><input type="radio" name="situation" onchange="situationChange()">魔法与ダメージ</label>
+        <label><input type="radio" name="situation" onchange="situationChange()">魔法被ダメージ</label>
+      </div>
+      <!-- <div class="separator"></div> -->
+      <div class="ui two column grid">
+        <div class="ui segment column">
+          <div class="box-friend">
+            <table><tr><th class="heading">味方</th></tr></table>
+            <div id="friendPhysY">
+              <!-- <table>
+                <tr><th>ATK:</th><td><input type="number" id="friendPhysYAtk" onchange="result()"></td></tr>
+                <tr><th>CRI:</th><td><input type="number" id="friendPhysYCri" onchange="result()"></td></tr>
+              </table> -->
+              <div class="ui input focus">
+                ATK
+                <input type="number" placeholder="0" onchange="result()" id="friendPhysYAtk">
+              </div>
+              <div class="ui input focus">
+                CRI
+                <input type="number" placeholder="0" onchange="result()" id="friendPhysYCri">
+              </div>
+              <table>
+                <tr>
+                  <th>物理攻撃名:</th>
+                  <td>
+                    <select id="friendPhysYAtack" onchange="friendPhysYAtackChange()">
+                      <option value="unselected;"></option>
+                      <option value="100;100;1+;-">通常攻撃</option>
+                      <option value="150;100;1;-">スタンショック</option>
+                      <option value="10;100;1;-">アイテムスティール</option>
+                      <option value="95;70;2;-">スラッシュ</option>
+                      <option value="100;16;3;-">ギガントブレイク(1~3段目)</option>
+                      <option value="100;50;2;-">ギガントブレイク(4,5段目)</option>
+                      <option value="100;150;1;-">ギガントブレイク(6段目)</option>
+                      <option value="70;100;2;-">ダブルスラスト</option>
+                      <option value="100;70;5;-">イーグルドライブ</option>
+                      <option value="100;90;1;-">チャージアロー(最小)</option>
+                      <option value="100;290;1;-">チャージアロー(最大)</option>
+                      <option value="100;140;1;-">スパイラルショット(1段目)</option>
+                      <option value="100;60;6;-">スパイラルショット(拡散)</option>
+                      <option value="260;100;1;-">アッパースイング</option>
+                      <option value="100;100;1;-">ブレイクバースト(通常)</option>
+                      <option value="1500;100;1;-">ブレイクバースト(大ダメージ)</option>
+                      <option value="4;100;1;闇属性攻撃魔法表記だが実際は無属性物理スキル">ローバークラウド</option>
+                      <option value="80;100;2;-">散斬</option>
+                      <option value="80;60;3;-">双塵乱舞(1~3段目)</option>
+                      <option value="110;100;1;-">双塵乱舞(4段目)</option>
+                      <option value="100;190;1;-">一閃翔破</option>
+                      <option value="170;250;1;-">鬼神撃</option>
+                      <option value="100;150;1;-">爆牙(近)</option>
+                      <option value="40;100;1;-">爆牙(遠)</option>
+                      <option value="200;100;2+;-">フェンリル召喚(通常攻撃)</option>
+                      <option value="100;100;15+;範囲内の敵の数nに対して対象ランダムの13+2n回攻撃(最大31回)">紅蓮華(1~15+段目)</option>
+                      <option value="300;100;2+;-">エンシェントドラゴン(通常攻撃)</option>
+                      <option value="10;100;1;-">ぬすっとグローブ</option>
+                    </select>
+                  </td>
+                </tr>
+              </table>
+              <table>
+                <tr><th>ATK倍率:</th><td><input type="number" id="friendPhysYAtackAtk" onchange="result()"></td></tr>
+                <tr><th>威力倍率:</th><td><input type="number" id="friendPhysYAtackPower" onchange="result()"></td></tr>
+              </table>
+              <table>
+                <tr><th id="friendPhysYElemDamageHeading">対属性ダメージ増減:</th>
+                    <td><input type="number" id="friendPhysYElemDamage" placeholder="0" onchange="friendPhysYElemDamageChange()">%</td></tr>
+              </table>
+              <table>
+                <tr><th id="friendPhysYTypeDamageHeading">対種族ダメージ増減:</th>
+                    <td><input type="number" id="friendPhysYTypeDamage" placeholder="0" onchange="friendPhysYTypeDamageChange()">%</td></tr>
+              </table>
+            </div>
+            <div id="friendPhysH" class="item-hidden">
+              <table>
+                <tr><th>DEF:</th><td><input type="number" id="friendPhysHDef" onchange="result()"></td></tr>
+                <tr><th>BLO:</th><td><input type="number" id="friendPhysHBlo" onchange="result()"></td></tr>
+              </table>
+              <table>
+                <tr><th id="friendPhysHElemResistHeading">属性耐性:</th>
+                    <td><input type="number" id="friendPhysHElemResist" onchange="friendPhysHElemResistChange()"></td></tr>
+              </table>
+              <table>
+                <tr><th id="friendPhysHTypeResistHeading">種族耐性増減:</th>
+                    <td><input type="number" id="friendPhysHTypeResist" placeholder="0" onchange="friendPhysHTypeResistChange()">%</td></tr>
+              </table>
+              <table>
+                <tr><th><label><input type="checkbox" id="friendPhysHPetrify" onchange="friendPhysHPetrifyChange()">石化</label></th></tr>
+              </table>
+            </div>
+            <div id="friendMagicY" class="item-hidden">
+              <table>
+                <tr><th>MAG:</th><td><input type="number" id="friendMagicYMag" onchange="result()"></td></tr>
+              </table>
+              <table>
+                <tr>
+                  <th>魔法攻撃名:</th>
+                  <td>
+                    <select id="friendMagicYAtack" onchange="friendMagicYAtackChange()">
+                      <option value="unselected;"></option>
+                      <option value="115;2;1;-">ファイアショット</option>
+                      <option value="180;2;1;-">フレイムボム</option>
+                      <option value="255;2;1;-">バーニングブレイド</option>
+                      <option value="125;2;5+;-">エクスプロージョン</option>
+                      <option value="640;2;1;-">プロミネンス</option>
+                      <option value="75;3;2;-">アイスニードル</option>
+                      <option value="145;3;1;-">クリスタルエッジ</option>
+                      <option value="200;3;1;-">アイスマイン</option>
+                      <option value="90;3;16;一体に最大5HIT">コールドバルカン</option>
+                      <option value="310;3;1;-">アブソリュートゼロ</option>
+                      <option value="105;4;1;-">ライトニング</option>
+                      <option value="85;4;2;-">サンダーストーム</option>
+                      <option value="60;4;4;-">スパークウェーブ</option>
+                      <option value="170;4;3;-">スピアボルト</option>
+                      <option value="80;4;1;-">トールスパーク(1段目)</option>
+                      <option value="32;4;16;-">トールスパーク(2~17段目)</option>
+                      <option value="160;4;1;-">トールスパーク(18段目)</option>
+                      <option value="100;5;1;-">ウォーターボール</option>
+                      <option value="150;5;1;-">スプラッシュ</option>
+                      <option value="130;5;3;-">アクアリング(周囲)</option>
+                      <option value="130;5;3;-">アクアリング(発射)</option>
+                      <option value="100;5;4+;-">メイルシュトローム</option>
+                      <option value="56;5;10;-">ノア</option>
+                      <option value="45;6;2;-">ウィンドアロー</option>
+                      <option value="26;6;5;-">ソニックカッター</option>
+                      <!-- スマッシュガストの番号が変わる場合にresultMagicY()の修正が必要 -->
+                      <option value="190;6;1;対石化時追加ダメージ(石化倍率60→100)">スマッシュガスト</option>
+                      <option value="27;6;14;-">ヘルサイクロン</option>
+                      <option value="30;6;20;-">セレスティアルブラスト</option>
+                      <option value="130;7;1;-">ロックブレイク</option>
+                      <option value="70;7;6+;-">ミーティアレイン</option>
+                      <option value="7;7;10;-">マグネットフォース(エントの枝装備時)</option>
+                      <option value="425;7;1;-">ガイアカリス</option>
+                      <option value="96;7;6;-">グラビティプレス</option>
+                      <option value="135;8;1;-">ホーリーボルト</option>
+                      <option value="54;8;4;-">ヴァニッシュレイ</option>
+                      <option value="175;9;1;-">ダークネス</option>
+                      <option value="48;9;5;-">プリズンスフィア</option>
+                      <option value="52;9;12+;-">シャドウランス</option>
+                      <option value="260;11;1;-">ルイン</option>
+                      <option value="200;11;1;-">ソウルイーター(1段目)</option>
+                      <option value="60;11;5;-">ソウルイーター(追加ダメージ)</option>
+                      <option value="42;11;12;-">カオス</option>
+                      <option value="40;11;4;-">デュース</option>
+                      <option value="50;2;2;-">バーン</option>
+                      <option value="100;2;3;-">イグニス</option>
+                      <option value="70;3;1;-">フリーズ</option>
+                      <option value="100;3;1;-">グラシエル</option>
+                      <option value="80;4;1;-">パラライズ</option>
+                      <option value="10;4;10;-">フルメン</option>
+                      <option value="70;5;1;-">サイレント</option>
+                      <option value="90;5;1;-">ミューツ</option>
+                      <option value="15;6;3;-">コンフューズ</option>
+                      <option value="20;6;4;-">タービュランス</option>
+                      <option value="80;7;1;-">ペトラ</option>
+                      <option value="100;7;1;-">ラピスモーグ</option>
+                      <option value="70;8;1;-">フラッシュ</option>
+                      <option value="90;9;1;-">ポイズン</option>
+                      <option value="120;2;1;-">ヒートロウズ</option>
+                      <option value="45;3;1;-">フロストバインド</option>
+                      <option value="40;5;7+;-">ファームスコール</option>
+                      <option value="6;6;4;-">シール</option>
+                      <option value="90;7;1;-">ラストメンタル</option>
+                      <option value="100;9;1;-">ベノム瓶</option>
+                      <option value="40;9;1;-">アシッドクラウド</option>
+                      <option value="15;9;1;-">ペトラネーブ</option>
+                      <option value="200;8;1;-">マイトフィングル</option>
+                      <option value="50;3;1;-">冷炎召喚</option>
+                      <option value="40;4;30;-">サンダーウォール</option>
+                      <option value="5;0;13;6属性攻撃">エッセンティア</option>
+                      <option value="50;0;20;6属性攻撃">エレメントゼロ(1~20段目)</option>
+                      <option value="1560;1;1;-">エレメントゼロ(21段目)</option>
+                      <option value="40;0;64;8属性攻撃">仮想世界</option>
+                      <option value="150;11;4;-">ビッククランチ(1~4段目)</option>
+                      <option value="950;11;1;-">ビッククランチ(5段目)</option>
+                      <option value="300;9;1;-">禁忌のグリモワール</option>
+                      <option value="105;9;10;-">魔式詠唱陣(1~10段目)</option>
+                      <option value="1050;9;1;-">魔式詠唱陣(11段目)</option>
+                      <option value="110;0;2;状況により攻撃属性が異なるバグあり">火炎旋風(発動時)</option>
+                      <option value="100;2;2;-">火炎旋風(通常攻撃1,2段目)</option>
+                      <option value="150;2;1;-">火炎旋風(通常攻撃3段目)</option>
+                      <option value="500;2;1;-">紅蓮華(16+段目)</option>
+                      <option value="60;3;3;-">エンシェントドラゴン(発動時)</option>
+                      <option value="230;3;9;-">エターナルブレス</option>
+                      <option value="145;11;12;-">ビックバン</option>
+                    </select>
+                  </td>
+                </tr>
+              </table>
+              <table>
+                <tr><th>威力倍率:</th><td><input type="number" id="friendMagicYAtackPower" onchange="result()"></td></tr>
+              </table>
+              <table>
+                <tr>
+                  <th>攻撃属性:</th>
+                  <td>
+                    <select id="friendMagicYAtackElem" onchange="friendMagicYAtackElemChange()">
+                      <option></option>
+                      <option>無属性</option>
+                      <option>火属性</option>
+                      <option>氷属性</option>
+                      <option>雷属性</option>
+                      <option>水属性</option>
+                      <option>風属性</option>
+                      <option>地属性</option>
+                      <option>光属性</option>
+                      <option>闇属性</option>
+                      <option>命属性</option>
+                      <option>滅属性</option>
+                    </select>
+                  </td>
+                </tr>
+              </table>
+              <table>
+                <tr><th id="friendMagicYElemPowerHeading">属性魔法威力増減:</th>
+                    <td><input type="number" id="friendMagicYElemPower" placeholder="0" onchange="friendMagicYElemPowerChange()">%</td></tr>
+              </table>
+              <table>
+                <tr><th>スキル威力増減:</th>
+                    <td><input type="number" id="friendMagicYSkillPower" placeholder="0" onchange="friendMagicYSkillPowerChange()">%</td></tr>
+              </table>
+              <table>
+                <tr><th>魔法クリティカル発生増減:</th><td><input type="number" id="friendMagicYMagicCritical" placeholder="0" onchange="result()">%</td></tr>
+              </table>
+            </div>
+            <div id="friendMagicH" class="item-hidden">
+              <table>
+                <tr><th>RES:</th><td><input type="number" id="friendMagicHRes" onchange="result()"></td></tr>
+              </table>
+              <table>
+                <tr><th id="friendMagicHElemResistHeading">属性耐性:</th>
+                    <td><input type="number" id="friendMagicHElemResist" onchange="friendMagicHElemResistChange()"></td></tr>
+              </table>
+              <table>
+                <tr><th id="friendMagicHElemDamageHeading">属性ダメージ減少:</th>
+                    <td><input type="number" id="friendMagicHElemDamage" placeholder="0" onchange="friendMagicHElemDamageChange()">%</td></tr>
+              </table>
+              <table>
+                <tr>
+                  <th>ステータス異常:</th>
+                  <td>
+                    <select id="friendMagicHStatusAilment" onchange="friendMagicHStatusAilmentChange()">
+                      <option>正常</option>
+                      <option>火傷</option>
+                      <option>凍結</option>
+                      <option>麻痺</option>
+                      <option>沈黙</option>
+                      <option>混乱</option>
+                      <option>石化</option>
+                      <option>眩惑</option>
+                      <option>猛毒</option>
+                    </select>
+                  </td>
+                </tr>
+              </table>
+              <table>
+                <tr><th><label><input type="checkbox" id="friendMagicHAilmentElem" onchange="result()">異常属性効果</label></th></tr>
+              </table>
+            </div>
+            <div id="friendH" class="item-hidden">
+              <table>
+                <tr><th><label><input type="checkbox" id="friendHBalanceBreak" onchange="result()">バランスブレイク</label></th></tr>
+                <tr><th><label><input type="checkbox" id="friendHCushionBottle" onchange="result()">クッションボトル(仲間キャラクター)</label></th></tr>
+              </table>
+            </div>
+          </div>
+          <div class="box-enemy">
+            <table><tr><th class="heading">敵</th></tr></table>
+            <table>
+              <tr>
+                <th>モンスター名:</th>
+                <td>
+                  <select id="enemy" onchange="enemyChange()">
+                    <option value="unselected;"></option>
+                    <option value="1;2;1;4;40;0;0;0;0;100;120;120;120;120;120;120;120;120;-120;120">ベビースライム</option>
+                    <option value="1;2;3;20;60;0;10;0;0;90;120;120;120;120;120;120;120;120;-120;100">スライム</option>
+                    <option value="7;3;5;15;80;10;12;0;1;100;120;100;100;100;140;50;100;100;-100;100">クチリ</option>
+                    <option value="7;3;6;20;80;0;0;0;0;100;100;100;100;100;160;30;120;80;-100;100">モグ</option>
+                    <option value="5;2;10;0;90;0;120;1;1;100;120;90;130;90;100;100;100;100;-100;100">ビックスライム</option>
+                    <option value="2;2;11;0;90;0;120;1;1;100;60;120;140;120;100;100;100;100;-100;100">レッドビックスライム</option>
+                    <option value="5;2;6;0;65;0;0;0;0;100;100;100;150;50;100;100;100;100;-100;100">アメーバ</option>
+                    <option value="4;6;7;0;70;0;100;0;0;100;200;100;50;50;100;100;100;100;-100;100">マリンジェリー</option>
+                    <option value="5;6;7;0;80;0;0;0;0;100;100;100;150;50;100;100;100;100;-100;100">ロードジュニア</option>
+                    <option value="7;9;8;0;105;0;0;1;0;100;100;100;100;100;140;60;100;100;-100;100">ゴブリン</option>
+                    <option value="9;4;8;0;85;0;0;0;10;100;100;100;100;100;100;100;200;50;-100;100">ジャイアントバット</option>
+                    <option value="2;10;9;10;120;10;60;10;0;10;-10;15;12;14;12;11;8;10;-5;8">ウィスプ</option>
+                    <option value="7;6;12;300;140;100;120;50;2;80;50;20;20;0;60;0;20;20;-20;20">ブローン</option>
+                    <option value="2;3;10;0;80;60;100;1;0;105;80;120;100;100;100;100;100;100;-100;100">メイジコボルト</option>
+                    <option value="5;6;15;0;160;50;160;0;6;100;100;100;60;60;100;100;100;100;-100;100">ジェリーキング</option>
+                    <option value="6;4;10;0;130;80;0;0;0;100;100;100;100;100;75;125;100;140;-100;100">チュン</option>
+                    <option value="6;5;11;20;150;20;0;0;5;100;100;120;80;100;40;180;100;100;-100;100">キラービー</option>
+                    <option value="8;5;9;60;5;60;0;40;0;100;140;80;100;100;100;80;80;140;-100;100">モルモームの繭</option>
+                    <option value="8;5;11;35;150;60;0;2;3;100;120;80;100;100;100;80;80;120;-100;100">モルモーム</option>
+                    <option value="9;5;12;0;170;20;120;0;8;100;100;100;100;100;100;100;120;80;-100;90">ポイズンモーム</option>
+                    <option value="9;5;10;120;5;100;120;40;0;80;100;100;100;100;100;100;120;80;-100;100">ポイズンモームの繭</option>
+                    <option value="7;7;13;0;140;0;0;5;5;100;130;110;90;90;110;80;100;100;-100;100">ラフレシア</option>
+                    <option value="9;2;13;0;160;90;0;0;0;90;100;100;100;100;100;100;140;60;-100;100">ベノムジェリー</option>
+                    <option value="2;3;13;100;170;0;0;0;0;100;120;80;120;80;100;100;100;100;-100;100">ボア</option>
+                    <option value="7;7;18;200;140;260;200;4;5;100;130;100;100;80;120;70;90;100;-100;100">ドライアード</option>
+                    <option value="7;3;14;0;190;20;0;0;8;100;100;100;100;100;140;60;100;100;-100;100">マウンテンゴブリン</option>
+                    <option value="9;4;15;80;190;80;0;0;0;100;100;100;100;100;80;120;120;80;-100;100">ダーククロウ</option>
+                    <option value="7;3;15;0;140;0;0;0;0;100;100;100;90;110;140;100;100;100;-100;100">ナッツラット</option>
+                    <option value="4;9;20;30;200;50;250;0;0;100;100;100;70;130;100;100;100;100;-100;100">山神</option>
+                    <option value="9;7;21;300;150;140;190;3;20;100;110;100;100;100;100;100;130;90;-100;95">ヴァルギド</option>
+                    <option value="9;7;18;0;120;0;0;1;8;100;110;100;100;100;100;100;130;90;-100;95">ヴァルプラント</option>
+                    <option value="1;3;14;100;170;0;0;0;0;100;100;100;100;100;100;100;100;100;-100;100">トロッコチュウ</option>
+                    <option value="7;1;18;300;250;300;0;5;5;100;100;100;100;100;150;50;100;100;-100;100">古の石像</option>
+                    <option value="5;2;17;0;176;0;0;0;0;100;100;100;140;60;100;100;100;100;-100;100">ヘドロン</option>
+                    <option value="11;10;17;0;195;80;0;0;0;0;100;100;100;100;100;100;100;100;140;50">ポワゴースト</option>
+                    <option value="5;2;23;0;200;0;0;0;0;100;100;100;100;100;100;100;100;100;-100;100">ビックヘドロン</option>
+                    <option value="3;2;19;0;195;0;0;0;0;90;140;60;100;100;100;100;100;100;-100;100">ブルースライム</option>
+                    <option value="3;3;20;0;215;150;0;0;0;100;120;80;100;100;100;100;100;100;-100;100">白ウサギ</option>
+                    <option value="3;3;22;200;230;0;0;5;8;100;120;80;100;100;100;100;80;120;-100;100">暴れトナカイ</option>
+                    <option value="3;3;27;200;300;50;200;0;15;100;150;50;110;90;110;90;100;100;-100;100">ビックフット</option>
+                    <option value="7;1;23;200;250;0;0;3;20;100;100;100;100;100;140;60;100;100;-100;100">オーク</option>
+                    <option value="6;5;22;0;240;250;250;0;0;100;100;100;120;80;50;150;100;100;-100;100">ノクターバタフライ</option>
+                    <option value="4;7;22;150;256;100;0;5;5;100;130;130;80;120;120;80;70;70;-100;100">シビレプラント</option>
+                    <option value="2;8;23;120;293;0;0;6;15;100;40;140;110;120;100;100;100;100;-100;100">リザードマン</option>
+                    <option value="4;10;21;0;280;100;210;4;10;0;100;100;60;130;100;100;100;100;-100;90">ゴースト</option>
+                    <option value="7;7;21;150;270;0;0;0;4;100;130;110;90;90;150;60;100;100;-100;100">木人</option>
+                    <option value="7;9;24;230;260;400;0;120;8;80;120;20;130;100;130;20;70;70;-100;100">鉄人</option>
+                    <option value="2;4;28;100;350;40;340;10;15;100;50;150;100;120;100;100;100;100;-100;100">フェニックス</option>
+                    <option value="6;3;17;0;190;0;0;0;0;100;100;100;100;100;50;150;100;100;-100;100">ピヨ</option>
+                    <option value="6;3;23;0;250;0;0;8;14;100;100;100;100;100;50;150;100;100;-100;100">コッケー</option>
+                    <option value="5;6;24;0;236;100;360;7;3;100;100;100;160;-50;100;100;100;100;-100;100">シズマリカエル</option>
+                    <option value="9;3;18;0;195;0;0;8;8;100;100;100;100;100;100;100;140;60;-100;100">ジャイアントマウス</option>
+                    <option value="3;9;25;120;300;80;0;8;5;100;150;50;100;100;100;100;100;100;-100;100">アイスアイ</option>
+                    <option value="3;10;26;0;240;0;420;10;6;10;15;-10;10;12;10;10;10;10;-100;100">冷炎</option>
+                    <option value="3;9;25;400;280;400;0;28;4;100;120;80;100;100;100;100;100;100;-100;100">アーマーアイ</option>
+                    <option value="5;10;34;300;400;500;400;18;12;70;90;90;150;-100;90;90;90;90;-100;100">ウンディーネ</option>
+                    <option value="11;1;21;30;280;0;0;6;8;100;140;140;140;140;140;140;180;40;200;80">スケルトン</option>
+                    <option value="2;3;27;0;310;0;0;4;8;100;50;150;100;100;100;100;100;100;-100;100">グリズリー</option>
+                    <option value="8;9;29;0;290;300;500;6;6;100;100;100;100;100;80;120;60;140;-100;100">ケットシー</option>
+                    <option value="2;3;28;0;340;0;0;5;10;100;50;150;100;100;100;100;100;100;-100;100">グレートウリボウ</option>
+                    <option value="7;7;28;350;330;0;0;5;7;100;100;100;100;100;160;10;120;80;-100;100">トキシコロジア</option>
+                    <option value="7;8;28;400;360;400;0;10;12;100;70;70;130;80;80;80;120;80;-100;100">スケイルスネーク</option>
+                    <option value="6;10;21;100;290;300;340;4;4;70;90;90;90;90;-100;150;90;90;-100;100">ジン</option>
+                    <option value="2;7;20;0;0;0;0;0;0;100;60;140;100;100;100;100;100;100;-100;100">レッドポム</option>
+                    <option value="3;7;20;0;0;0;0;0;0;100;140;60;100;100;100;100;100;100;-100;100">ブルーポム</option>
+                    <option value="7;7;20;0;0;0;0;0;0;100;100;100;100;100;140;60;100;100;-100;100">オレンジポム</option>
+                    <option value="6;7;20;0;0;0;0;0;0;100;100;100;100;100;60;140;100;100;-100;100">グリーンポム</option>
+                    <option value="9;2;27;0;285;0;0;14;10;100;100;100;100;100;100;100;150;50;-100;100">クロコ</option>
+                    <option value="9;10;30;0;260;0;350;0;0;10;12;8;10;10;10;10;14;6;-100;100">シャドウマジシャン</option>
+                    <option value="9;10;28;0;300;100;0;0;0;10;12;8;10;10;10;10;14;6;-100;100">シャドウスピリット</option>
+                    <option value="7;1;28;0;350;200;0;14;3;100;90;110;60;140;200;0;100;100;-100;100">サンドマン</option>
+                    <option value="7;8;34;600;420;600;0;13;26;100;90;90;110;90;120;90;90;110;-100;100">サイドワインダー</option>
+                    <option value="7;6;33;400;390;0;0;12;5;100;100;100;100;100;100;100;100;100;-100;100">モリモエアガエル</option>
+                    <option value="7;1;38;20;370;400;400;16;3;110;90;90;90;90;-100;-100;90;90;-100;90">メルパ</option>
+                    <option value="9;10;50;80;700;80;800;28;33;90;100;100;100;100;100;100;120;80;120;20">デス</option>
+                    <option value="9;4;34;0;380;400;0;13;19;100;100;100;100;100;100;100;200;50;-100;100">ドレインバット</option>
+                    <option value="8;1;37;610;390;600;0;120;0;100;120;120;120;120;120;120;60;140;120;120">ゴールドスケルトン</option>
+                    <option value="8;10;31;0;370;0;340;23;20;1;1;1;1;1;1;1;1;1;-2;2">スペクトラム</option>
+                    <option value="1;3;35;0;420;0;0;18;33;100;100;100;100;100;100;100;100;100;-100;100">ヘルハウンド</option>
+                    <option value="2;2;41;0;440;0;0;20;19;100;50;150;100;100;100;100;100;100;-100;100">レッドスライム</option>
+                    <option value="6;3;44;215;520;0;0;26;21;100;100;100;100;100;60;140;100;100;-100;100">ファーマープードル</option>
+                    <option value="4;3;47;0;600;0;0;20;20;100;100;100;60;140;100;100;100;100;-100;100">ウォルフ</option>
+                    <option value="5;3;46;0;510;425;700;18;14;100;100;100;130;70;100;100;100;100;-100;100">アクアコボルト</option>
+                    <option value="5;2;45;60;410;186;0;21;24;100;100;100;150;50;100;100;100;100;-100;100">おたまスライム</option>
+                    <option value="5;6;47;400;476;235;0;40;32;100;80;80;150;50;80;80;80;80;-100;100">ウォーム</option>
+                    <option value="7;4;48;0;430;680;580;21;48;100;80;80;80;80;100;60;80;80;-100;100">フェザー</option>
+                    <option value="6;4;46;0;470;160;0;19;19;100;100;100;100;100;75;125;100;140;-100;100">チュンEX</option>
+                    <option value="6;5;47;20;520;90;0;14;40;100;100;120;80;100;40;180;100;100;-100;100">キラービーEX</option>
+                    <option value="8;5;46;40;580;100;0;11;24;100;120;80;100;100;100;80;80;120;-100;100">キングモーム</option>
+                    <option value="8;5;45;1415;0;1760;0;0;0;100;100;100;100;100;100;100;50;200;-100;100">キングモームの繭</option>
+                    <option value="2;3;48;100;620;0;0;20;30;100;120;80;120;80;100;100;100;100;-100;100">ボアEX</option>
+                    <option value="7;3;49;0;570;0;0;18;30;100;100;100;100;100;130;70;100;100;-100;100">マウンテンコボルト</option>
+                    <option value="8;3;48;0;470;0;0;24;9;100;100;100;100;100;110;90;80;120;-100;100">炸裂ラット</option>
+                    <option value="4;3;50;90;600;100;0;18;11;100;110;110;30;170;100;100;110;110;-100;100">メガトロチュウ</option>
+                    <option value="2;9;51;100;570;600;730;21;12;100;50;150;100;110;100;100;80;120;-100;100">オバケランタン</option>
+                    <option value="5;6;53;400;730;1300;510;60;0;100;130;40;130;40;100;100;100;100;-100;100">ブロギン</option>
+                    <option value="7;1;75;2000;1250;1600;0;60;0;70;80;80;60;100;100;20;80;80;-100;100">ストーンゴーレム</option>
+                    <option value="9;10;80;1200;900;2800;700;30;25;40;100;100;100;100;100;100;140;60;-100;100">ナイトメア</option>
+                    <option value="4;2;60;10;450;6;0;0;30;100;120;120;10;140;120;120;120;120;-120;120">アシッドスライム</option>
+                    <option value="5;6;53;90;670;70;580;26;27;100;100;70;130;100;100;100;100;100;-100;100">イカダチュウ</option>
+                    <option value="9;6;54;0;560;0;820;30;25;100;100;100;120;80;100;100;180;20;-100;100">ドレッドダッグ</option>
+                    <option value="8;1;50;910;380;900;0;120;10;100;90;90;90;90;90;90;70;120;120;120">ミスリルスケルトン</option>
+                    <option value="9;3;46;120;610;120;0;21;22;100;100;100;100;100;100;100;140;60;-100;100">ギガマウス</option>
+                    <option value="8;8;60;400;810;1200;810;35;25;50;40;40;60;45;45;45;40;70;-50;50">カーバンクル</option>
+                    <option value="3;2;57;50;750;60;0;10;18;100;150;50;100;100;100;100;120;80;-100;100">アオコグローブ</option>
+                    <option value="3;2;30;0;670;0;0;3;9;100;150;50;50;120;100;100;120;50;-100;100">ハーフグローブ</option>
+                    <option value="3;2;16;0;590;0;0;1;5;100;150;50;10;140;100;100;120;10;-100;100">クォーターグローブ</option>
+                    <option value="3;3;58;78;720;380;0;31;26;100;130;70;100;100;100;100;100;100;-100;100">グレートトナカイ</option>
+                    <option value="3;1;62;430;900;400;0;46;28;100;130;80;130;70;100;100;100;100;-100;100">サイクロプス</option>
+                    <option value="8;5;60;40;580;1700;1120;25;20;110;110;110;120;80;90;90;80;140;-100;100">花妖精</option>
+                    <option value="2;5;62;100;750;1300;800;29;40;100;80;120;110;100;100;100;90;110;-100;100">鈴蜜蜂</option>
+                    <option value="2;5;64;800;880;200;0;34;38;100;70;130;120;80;100;100;100;100;-100;100">ヴェスパ</option>
+                    <option value="8;10;66;120;810;2500;960;25;25;80;120;120;120;120;120;120;-100;150;-120;120">光霊</option>
+                    <option value="7;9;61;1400;1150;400;0;18;12;100;40;40;80;100;130;-100;40;40;-100;60">アースフラクタス</option>
+                    <option value="7;3;63;1200;950;600;0;12;13;100;100;100;100;100;130;70;100;100;-100;100">エオマイア</option>
+                    <option value="7;3;65;400;1300;400;0;8;28;100;100;100;100;100;130;70;100;100;-100;100">ミノタウロス</option>
+                    <option value="7;9;71;1700;1100;2300;800;60;20;100;100;100;100;100;150;-100;100;100;-100;100">ノーム</option>
+                    <option value="11;1;59;0;860;0;0;0;28;100;160;130;110;110;110;110;200;50;200;20">ゾンビ</option>
+                    <option value="11;1;64;0;940;0;0;0;18;100;160;130;110;110;110;110;200;50;200;20">マミー</option>
+                    <option value="7;7;55;300;500;300;500;10;30;100;120;120;80;80;140;60;80;120;-100;100">グリーンスティンガー</option>
+                    <option value="8;7;58;120;630;120;0;0;0;100;140;100;100;80;100;80;50;150;-100;100">リフレ</option>
+                    <option value="7;7;68;300;820;300;1400;30;17;100;120;100;100;80;140;60;70;130;-100;100">ハマドライアス</option>
+                    <option value="8;4;48;125;800;130;0;0;0;100;100;100;100;100;120;70;70;120;-100;100">グリチック</option>
+                    <option value="8;4;53;105;690;85;0;0;0;100;100;100;100;100;120;80;70;130;-100;100">ヨルカモメ</option>
+                    <option value="9;4;34;20;540;600;0;16;21;100;100;100;100;100;100;100;200;50;-100;100">ブラッディバット</option>
+                    <option value="1;11;3;0;0;0;0;0;0;1;0;0;0;0;0;0;0;0;-100;0">カカシ</option>
+                    <option value="1;11;5;0;0;0;0;0;0;0;0;0;0;100;0;0;0;0;-100;0">水に弱いカカシ</option>
+                    <option value="1;11;1;0;0;0;0;0;999;0;0;0;0;0;0;0;0;0;-100;0">ミニカカシ</option>
+                    <option value="1;2;8;0;100;0;0;0;6;100;120;120;120;120;120;120;120;120;-100;100">シルバーアメーバ</option>
+                    <option value="9;1;16;100;200;200;270;2;18;100;100;100;100;100;100;100;120;80;-100;100">カーネル</option>
+                    <option value="10;9;50;0;600;0;720;20;32;100;95;95;95;95;95;95;95;95;-120;120">エルバーク</option>
+                    <option value="6;1;12;0;200;0;0;0;10;100;100;100;100;100;60;140;100;100;-100;100">盗賊A</option>
+                    <option value="4;1;12;200;180;0;0;0;10;100;100;100;60;140;100;100;100;100;-100;100">盗賊B</option>
+                    <option value="1;1;13;0;170;0;0;0;0;100;100;100;100;100;100;100;100;100;-100;100">エランス兵</option>
+                    <option value="2;1;14;0;0;0;350;0;0;100;100;100;100;100;100;100;100;100;-100;100">エランス魔法兵A</option>
+                    <option value="6;1;14;0;0;0;350;0;0;100;100;100;100;100;100;100;100;100;-100;100">エランス魔法兵B</option>
+                    <option value="6;1;50;300;450;300;400;8;35;100;100;100;100;100;80;120;100;100;-100;100">クロア</option>
+                    <option value="2;1;20;300;290;0;250;0;8;100;60;140;100;100;100;100;100;100;-100;100">エレナ</option>
+                    <option value="3;1;24;0;190;400;180;0;6;100;120;80;100;100;100;100;100;100;-100;100">ミミー</option>
+                    <option value="3;3;27;200;230;0;200;0;0;100;130;70;100;100;100;100;100;100;-100;100">フェンリル</option>
+                    <option value="7;1;31;150;300;100;0;7;6;100;100;100;100;100;120;80;100;100;-100;100">盗賊団ボス</option>
+                    <option value="8;8;32;30;385;30;385;0;0;100;80;80;80;100;100;120;50;150;-100;100">ベビードラゴン</option>
+                    <option value="7;9;30;420;360;160;380;20;0;40;40;10;40;60;80;20;70;20;-100;90">タワーゴーレム</option>
+                    <option value="5;1;23;0;280;0;0;0;0;100;100;100;140;60;100;100;100;100;-100;100">訓練された盗賊</option>
+                    <option value="4;9;26;0;0;500;300;2;4;100;100;100;80;120;100;99;100;100;-100;100">マリネ</option>
+                    <option value="3;3;32;310;440;300;300;20;30;100;140;60;100;100;80;120;100;100;-100;100">シルバーウルフ</option>
+                    <option value="5;6;35;820;320;1430;350;50;20;100;105;100;125;75;100;100;120;80;-100;100">スワンプタートル</option>
+                    <option value="1;11;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;-100;0">異常カカシ</option>
+                    <option value="1;11;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;-100;0">全耐性カカシ</option>
+                    <option value="0;0;75;200;320;300;320;1;8;100;100;100;100;100;100;100;100;100;-100;100">ネクロビア</option>
+                    <option value="0;0;75;150;320;200;340;0;14;100;100;100;100;100;100;100;100;100;-100;100">ネクロビア(ちょっと本気)</option>
+                    <option value="1;1;30;200;380;100;0;5;8;100;100;100;100;100;100;100;100;100;-100;100">エランス兵エリート</option>
+                    <option value="3;1;13;0;310;200;430;2;3;100;120;80;100;100;100;100;100;100;-100;100">エランス魔法兵エリートA</option>
+                    <option value="7;1;30;0;320;200;430;2;3;100;100;100;100;100;120;80;100;100;-100;100">エランス魔法兵エリートB</option>
+                    <option value="7;1;45;770;500;1860;2450;42;21;13;10;10;10;10;12;8;10;10;-45;10">レミ</option>
+                    <option value="6;1;50;80;400;80;350;20;25;100;100;100;100;100;80;120;100;100;-100;100">クロア 2回目</option>
+                    <option value="6;1;50;80;450;80;400;20;25;100;100;100;100;100;80;120;100;100;-100;100">クロア 3回目</option>
+                    <option value="6;1;50;80;500;80;400;25;28;100;100;100;100;100;80;120;100;100;-100;100">クロア 4回目</option>
+                    <option value="5;2;50;100;465;100;0;8;18;100;110;110;110;110;110;110;110;110;-100;120">ビックアメーバ</option>
+                    <option value="5;2;40;100;405;100;0;7;12;100;120;120;170;30;120;120;120;120;-100;120">シルバーアメーバEX</option>
+                    <option value="9;7;60;400;0;300;790;0;0;100;100;100;100;100;100;-100;100;100;-100;100">真のヴァルギド</option>
+                    <option value="7;3;70;300;1250;900;1150;25;40;100;80;80;80;80;120;40;100;60;-100;100">マンティコア</option>
+                    <option value="2;1;60;900;720;1000;580;0;0;100;80;80;100;100;100;100;100;100;-100;100">シルミナ</option>
+                    <option value="1;11;1;25000;0;30000;0;0;0;100;0;0;0;0;0;0;0;0;-100;0">超防御カカシ</option>
+                    <option value="9;10;65;2400;620;949;942;0;0;30;100;100;70;130;100;100;150;90;50;50">プラズマシャドウ</option>
+                    <option value="4;10;58;1800;490;511;824;0;0;50;100;100;70;150;100;100;60;90;50;50">スペクター</option>
+                    <option value="2;7;58;400;720;200;300;10;30;100;80;120;100;100;100;100;120;100;-100;100">スティンガー</option>
+                    <option value="3;7;58;100;340;100;780;6;0;100;120;80;100;100;100;100;120;100;-100;100">ブレイカー</option>
+                    <option value="7;7;58;150;480;500;520;3;25;100;120;100;100;100;120;80;120;100;-100;100">ヒーラー</option>
+                    <option value="2;1;40;250;550;200;0;23;26;100;80;120;100;100;100;100;100;100;-100;100">シルミナの兵</option>
+                    <option value="3;1;43;0;480;420;870;8;14;100;120;80;100;100;100;100;100;100;-100;100">シルミナの魔法兵</option>
+                    <option value="3;8;65;800;850;800;1470;16;41;90;130;30;100;90;40;90;90;90;-110;90">エンシェントドラゴン</option>
+                    <option value="3;2;57;340;2750;480;0;14;25;100;150;50;100;100;100;100;120;80;-100;100">マザーグローブ</option>
+                    <option value="3;8;61;730;750;630;1050;20;20;100;150;50;115;100;100;100;100;100;-100;100">アイスドラゴン</option>
+                    <option value="10;7;68;620;820;1100;940;12;15;100;80;80;80;80;80;80;80;80;-120;120">アザトゥース</option>
+                    <option value="11;7;68;50000;740;50000;800;20;0;90;100;100;100;100;100;100;100;100;0;80">災厄の種</option>
+                    <option value="5;1;60;180;780;60;0;46;29;100;100;100;100;100;100;100;100;100;-100;100">アルモニカ兵</option>
+                    <option value="3;10;63;900;410;800;980;39;14;180;250;150;200;200;200;200;220;180;-160;160">マヤ</option>
+                    <option value="3;10;60;0;720;0;0;0;0;0;150;0;0;0;0;0;0;0;0;0">アイスポワ</option>
+                    <option value="8;10;60;0;720;0;0;0;0;0;0;0;0;0;0;0;0;150;0;0">シャインポワ</option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+            <div id="enemyPhysY1">
+              <table>
+                <tr>
+                  <th>潜在属性:</th>
+                  <td>
+                    <select id="enemyPhysElem" onchange="enemyPhysElemChange()">
+                      <option></option>
+                      <option>無属性</option>
+                      <option>火属性</option>
+                      <option>氷属性</option>
+                      <option>雷属性</option>
+                      <option>水属性</option>
+                      <option>風属性</option>
+                      <option>地属性</option>
+                      <option>光属性</option>
+                      <option>闇属性</option>
+                      <option>命属性</option>
+                      <option>滅属性</option>
+                    </select>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div id="enemyPhys">
+              <table>
+                <tr>
+                  <th>種族:</th>
+                  <td>
+                    <select id="enemyPhysType" onchange="enemyPhysTypeChange()">
+                      <option></option>
+                      <option>人型</option>
+                      <option>スライム</option>
+                      <option>魔獣</option>
+                      <option>有翼</option>
+                      <option>昆虫</option>
+                      <option>水棲</option>
+                      <option>植物</option>
+                      <option>ドラゴン</option>
+                      <option>魔法生物</option>
+                      <option>非実体</option>
+                      <option>無機</option>
+                    </select>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div id="enemyPhysY2">
+              <table>
+                <tr><th>DEF:</th><td><input type="number" id="enemyPhysYDef" onchange="result()"></td></tr>
+                <tr><th>BLO:</th><td><input type="number" id="enemyPhysYBlo" onchange="result()"></td></tr>
+              </table>
+              <table>
+                <tr><th>無属性耐性:</th><td><input type="number" id="enemyPhysYNeResist" onchange="result()"></td></tr>
+              </table>
+              <table>
+                <tr><th><label><input type="checkbox" id="enemyPhysYPetrify" onchange="enemyPhysYPetrifyChange()">石化</label></th></tr>
+              </table>
+            </div>
+            <div id="enemyPhysH" class="item-hidden">
+              <table>
+                <tr><th>ATK:</th><td><input type="number" id="enemyPhysHAtk" onchange="result()"></td></tr>
+                <tr><th>CRI:</th><td><input type="number" id="enemyPhysHCri" onchange="result()"></td></tr>
+              </table>
+              <table>
+                <tr>
+                  <th>物理攻撃名:</th>
+                  <td>
+                    <select id="enemyPhysHAtack" onchange="enemyPhysHAtackChange()">
+                      <option value="unselected;"></option>
+                      <option value="100;100;0;1;モンスターによって攻撃属性が異なる">通常攻撃</option>
+                      <option value="100;100;1;2;-">散斬</option>
+                      <option value="100;100;1;1;-">一閃翔破</option>
+                      <option value="100;150;1;1;-">鉄球投げ</option>
+                    </select>
+                  </td>
+                </tr>
+              </table>
+              <table>
+                <tr><th>ATK倍率:</td><td><input type="number" id="enemyPhysHAtackAtk" onchange="result()"></th></tr>
+                <tr><th>威力倍率:</td><td><input type="number" id="enemyPhysHAtackPower" onchange="result()"></th></tr>
+              </table>
+              <table>
+                <tr>
+                  <th>攻撃属性:</th>
+                  <td>
+                    <select id="enemyPhysHAtackElem" onchange="enemyPhysHAtackElemChange()">
+                      <option></option>
+                      <option>無属性</option>
+                      <option>火属性</option>
+                      <option>氷属性</option>
+                      <option>雷属性</option>
+                      <option>水属性</option>
+                      <option>風属性</option>
+                      <option>地属性</option>
+                      <option>光属性</option>
+                      <option>闇属性</option>
+                      <option>命属性</option>
+                      <option>滅属性</option>
+                    </select>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div id="enemyMagicY" class="item-hidden">
+              <table>
+                <tr><th>RES:</th><td><input type="number" id="enemyMagicYRes" onchange="result()"></td></tr>
+              </table>
+              <table>
+                <tr><th id="enemyMagicYElemResistHeading">属性耐性:</th><td><input type="number" id="enemyMagicYElemResist" onchange="result()"></td></tr>
+              </table>
+              <table>
+                <tr>
+                  <th>ステータス異常:</th>
+                  <td>
+                    <select id="enemyMagicYStatusAilment" onchange="enemyMagicYStatusAilmentChange()">
+                      <option>正常</option>
+                      <option>火傷</option>
+                      <option>凍結</option>
+                      <option>麻痺</option>
+                      <option>沈黙</option>
+                      <option>混乱</option>
+                      <option>石化</option>
+                      <option>眩惑</option>
+                      <option>猛毒</option>
+                    </select>
+                  </td>
+                </tr>
+              </table>
+              <table>
+                <tr><th><label><input type="checkbox" id="enemyMagicYAilmentElem" onchange="result()">異常属性効果</label></th></tr>
+              </table>
+            </div>
+            <div id="enemyMagicH" class="item-hidden">
+              <table>
+                <tr><th>MAG:</th><td><input type="number" id="enemyMagicHMag" onchange="result()"></td></tr>
+              </table>
+              <table>
+                <tr>
+                  <th>魔法攻撃名:</th>
+                  <td>
+                    <select id="enemyMagicHAtack" onchange="enemyMagicHAtackChange()">
+                      <option value="unselected;"></option>
+                      <!-- スマッシュガストの番号が変わる場合にresultMagicH()の修正が必要 -->
+                      <option value=";;1;対石化時追加ダメージ(石化倍率60→100)">スマッシュガスト</option>
+                    </select>
+                  </td>
+                </tr>
+              </table>
+              <table>
+                <tr><th>威力倍率:</th><td><input type="number" id="enemyMagicHAtackPower" onchange="result()"></td></tr>
+              </table>
+              <table>
+                <tr>
+                  <th>攻撃属性:</th>
+                  <td>
+                    <select id="enemyMagicHAtackElem" onchange="enemyMagicHAtackElemChange()">
+                      <option></option>
+                      <option>無属性</option>
+                      <option>火属性</option>
+                      <option>氷属性</option>
+                      <option>雷属性</option>
+                      <option>水属性</option>
+                      <option>風属性</option>
+                      <option>地属性</option>
+                      <option>光属性</option>
+                      <option>闇属性</option>
+                      <option>命属性</option>
+                      <option>滅属性</option>
+                    </select>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div id="enemyY">
+              <table>
+                <tr><th><label><input type="checkbox" id="enemyYBalanceBreak" onchange="result()">バランスブレイク</label></th></tr>
+              </table>
+            </div>
+          </div>
         </div>
-        <div id="friendPhysH" class="item-hidden">
-          <table>
-            <tr><th>DEF:</th><td><input type="number" id="friendPhysHDef" onchange="result()"></td></tr>
-            <tr><th>BLO:</th><td><input type="number" id="friendPhysHBlo" onchange="result()"></td></tr>
-          </table>
-          <table>
-            <tr><th id="friendPhysHElemResistHeading">属性耐性:</th>
-                <td><input type="number" id="friendPhysHElemResist" onchange="friendPhysHElemResistChange()"></td></tr>
-          </table>
-          <table>
-            <tr><th id="friendPhysHTypeResistHeading">種族耐性増減:</th>
-                <td><input type="number" id="friendPhysHTypeResist" placeholder="0" onchange="friendPhysHTypeResistChange()">%</td></tr>
-          </table>
-          <table>
-            <tr><th><label><input type="checkbox" id="friendPhysHPetrify" onchange="friendPhysHPetrifyChange()">石化</label></th></tr>
-          </table>
-        </div>
-        <div id="friendMagicY" class="item-hidden">
-          <table>
-            <tr><th>MAG:</th><td><input type="number" id="friendMagicYMag" onchange="result()"></td></tr>
-          </table>
-          <table>
-            <tr>
-              <th>魔法攻撃名:</th>
-              <td>
-                <select id="friendMagicYAtack" onchange="friendMagicYAtackChange()">
-                  <option value="unselected;"></option>
-                  <option value="115;2;1;-">ファイアショット</option>
-                  <option value="180;2;1;-">フレイムボム</option>
-                  <option value="255;2;1;-">バーニングブレイド</option>
-                  <option value="125;2;5+;-">エクスプロージョン</option>
-                  <option value="640;2;1;-">プロミネンス</option>
-                  <option value="75;3;2;-">アイスニードル</option>
-                  <option value="145;3;1;-">クリスタルエッジ</option>
-                  <option value="200;3;1;-">アイスマイン</option>
-                  <option value="90;3;16;一体に最大5HIT">コールドバルカン</option>
-                  <option value="310;3;1;-">アブソリュートゼロ</option>
-                  <option value="105;4;1;-">ライトニング</option>
-                  <option value="85;4;2;-">サンダーストーム</option>
-                  <option value="60;4;4;-">スパークウェーブ</option>
-                  <option value="170;4;3;-">スピアボルト</option>
-                  <option value="80;4;1;-">トールスパーク(1段目)</option>
-                  <option value="32;4;16;-">トールスパーク(2~17段目)</option>
-                  <option value="160;4;1;-">トールスパーク(18段目)</option>
-                  <option value="100;5;1;-">ウォーターボール</option>
-                  <option value="150;5;1;-">スプラッシュ</option>
-                  <option value="130;5;3;-">アクアリング(周囲)</option>
-                  <option value="130;5;3;-">アクアリング(発射)</option>
-                  <option value="100;5;4+;-">メイルシュトローム</option>
-                  <option value="56;5;10;-">ノア</option>
-                  <option value="45;6;2;-">ウィンドアロー</option>
-                  <option value="26;6;5;-">ソニックカッター</option>
-                  <!-- スマッシュガストの番号が変わる場合にresultMagicY()の修正が必要 -->
-                  <option value="190;6;1;対石化時追加ダメージ(石化倍率60→100)">スマッシュガスト</option>
-                  <option value="27;6;14;-">ヘルサイクロン</option>
-                  <option value="30;6;20;-">セレスティアルブラスト</option>
-                  <option value="130;7;1;-">ロックブレイク</option>
-                  <option value="70;7;6+;-">ミーティアレイン</option>
-                  <option value="7;7;10;-">マグネットフォース(エントの枝装備時)</option>
-                  <option value="425;7;1;-">ガイアカリス</option>
-                  <option value="96;7;6;-">グラビティプレス</option>
-                  <option value="135;8;1;-">ホーリーボルト</option>
-                  <option value="54;8;4;-">ヴァニッシュレイ</option>
-                  <option value="175;9;1;-">ダークネス</option>
-                  <option value="48;9;5;-">プリズンスフィア</option>
-                  <option value="52;9;12+;-">シャドウランス</option>
-                  <option value="260;11;1;-">ルイン</option>
-                  <option value="200;11;1;-">ソウルイーター(1段目)</option>
-                  <option value="60;11;5;-">ソウルイーター(追加ダメージ)</option>
-                  <option value="42;11;12;-">カオス</option>
-                  <option value="40;11;4;-">デュース</option>
-                  <option value="50;2;2;-">バーン</option>
-                  <option value="100;2;3;-">イグニス</option>
-                  <option value="70;3;1;-">フリーズ</option>
-                  <option value="100;3;1;-">グラシエル</option>
-                  <option value="80;4;1;-">パラライズ</option>
-                  <option value="10;4;10;-">フルメン</option>
-                  <option value="70;5;1;-">サイレント</option>
-                  <option value="90;5;1;-">ミューツ</option>
-                  <option value="15;6;3;-">コンフューズ</option>
-                  <option value="20;6;4;-">タービュランス</option>
-                  <option value="80;7;1;-">ペトラ</option>
-                  <option value="100;7;1;-">ラピスモーグ</option>
-                  <option value="70;8;1;-">フラッシュ</option>
-                  <option value="90;9;1;-">ポイズン</option>
-                  <option value="120;2;1;-">ヒートロウズ</option>
-                  <option value="45;3;1;-">フロストバインド</option>
-                  <option value="40;5;7+;-">ファームスコール</option>
-                  <option value="6;6;4;-">シール</option>
-                  <option value="90;7;1;-">ラストメンタル</option>
-                  <option value="100;9;1;-">ベノム瓶</option>
-                  <option value="40;9;1;-">アシッドクラウド</option>
-                  <option value="15;9;1;-">ペトラネーブ</option>
-                  <option value="200;8;1;-">マイトフィングル</option>
-                  <option value="50;3;1;-">冷炎召喚</option>
-                  <option value="40;4;30;-">サンダーウォール</option>
-                  <option value="5;0;13;6属性攻撃">エッセンティア</option>
-                  <option value="50;0;20;6属性攻撃">エレメントゼロ(1~20段目)</option>
-                  <option value="1560;1;1;-">エレメントゼロ(21段目)</option>
-                  <option value="40;0;64;8属性攻撃">仮想世界</option>
-                  <option value="150;11;4;-">ビッククランチ(1~4段目)</option>
-                  <option value="950;11;1;-">ビッククランチ(5段目)</option>
-                  <option value="300;9;1;-">禁忌のグリモワール</option>
-                  <option value="105;9;10;-">魔式詠唱陣(1~10段目)</option>
-                  <option value="1050;9;1;-">魔式詠唱陣(11段目)</option>
-                  <option value="110;0;2;状況により攻撃属性が異なるバグあり">火炎旋風(発動時)</option>
-                  <option value="100;2;2;-">火炎旋風(通常攻撃1,2段目)</option>
-                  <option value="150;2;1;-">火炎旋風(通常攻撃3段目)</option>
-                  <option value="500;2;1;-">紅蓮華(16+段目)</option>
-                  <option value="60;3;3;-">エンシェントドラゴン(発動時)</option>
-                  <option value="230;3;9;-">エターナルブレス</option>
-                  <option value="145;11;12;-">ビックバン</option>
-                </select>
-              </td>
-            </tr>
-          </table>
-          <table>
-            <tr><th>威力倍率:</th><td><input type="number" id="friendMagicYAtackPower" onchange="result()"></td></tr>
-          </table>
-          <table>
-            <tr>
-              <th>攻撃属性:</th>
-              <td>
-                <select id="friendMagicYAtackElem" onchange="friendMagicYAtackElemChange()">
-                  <option></option>
-                  <option>無属性</option>
-                  <option>火属性</option>
-                  <option>氷属性</option>
-                  <option>雷属性</option>
-                  <option>水属性</option>
-                  <option>風属性</option>
-                  <option>地属性</option>
-                  <option>光属性</option>
-                  <option>闇属性</option>
-                  <option>命属性</option>
-                  <option>滅属性</option>
-                </select>
-              </td>
-            </tr>
-          </table>
-          <table>
-            <tr><th id="friendMagicYElemPowerHeading">属性魔法威力増減:</th>
-                <td><input type="number" id="friendMagicYElemPower" placeholder="0" onchange="friendMagicYElemPowerChange()">%</td></tr>
-          </table>
-          <table>
-            <tr><th>スキル威力増減:</th>
-                <td><input type="number" id="friendMagicYSkillPower" placeholder="0" onchange="friendMagicYSkillPowerChange()">%</td></tr>
-          </table>
-          <table>
-            <tr><th>魔法クリティカル発生増減:</th><td><input type="number" id="friendMagicYMagicCritical" placeholder="0" onchange="result()">%</td></tr>
-          </table>
-        </div>
-        <div id="friendMagicH" class="item-hidden">
-          <table>
-            <tr><th>RES:</th><td><input type="number" id="friendMagicHRes" onchange="result()"></td></tr>
-          </table>
-          <table>
-            <tr><th id="friendMagicHElemResistHeading">属性耐性:</th>
-                <td><input type="number" id="friendMagicHElemResist" onchange="friendMagicHElemResistChange()"></td></tr>
-          </table>
-          <table>
-            <tr><th id="friendMagicHElemDamageHeading">属性ダメージ減少:</th>
-                <td><input type="number" id="friendMagicHElemDamage" placeholder="0" onchange="friendMagicHElemDamageChange()">%</td></tr>
-          </table>
-          <table>
-            <tr>
-              <th>ステータス異常:</th>
-              <td>
-                <select id="friendMagicHStatusAilment" onchange="friendMagicHStatusAilmentChange()">
-                  <option>正常</option>
-                  <option>火傷</option>
-                  <option>凍結</option>
-                  <option>麻痺</option>
-                  <option>沈黙</option>
-                  <option>混乱</option>
-                  <option>石化</option>
-                  <option>眩惑</option>
-                  <option>猛毒</option>
-                </select>
-              </td>
-            </tr>
-          </table>
-          <table>
-            <tr><th><label><input type="checkbox" id="friendMagicHAilmentElem" onchange="result()">異常属性効果</label></th></tr>
-          </table>
-        </div>
-        <div id="friendH" class="item-hidden">
-          <table>
-            <tr><th><label><input type="checkbox" id="friendHBalanceBreak" onchange="result()">バランスブレイク</label></th></tr>
-            <tr><th><label><input type="checkbox" id="friendHCushionBottle" onchange="result()">クッションボトル(仲間キャラクター)</label></th></tr>
-          </table>
+        <div class="ui segment box-result column">
+          <table><tr><th class="heading">結果</th></tr></table>
+          <div id="resultPhysY">
+            <table>
+              <tr><th class="resultPhysYHeading">通常:</td><td id="resultPhysYNormalDamage">-</th></tr>
+              <tr><th class="resultPhysYHeading">通常率:</td><td id="resultPhysYNormalRate">-</th></tr>
+              <tr><th class="resultPhysYHeading">クリティカル:</td><td id="resultPhysYCriticalDamage">-</th></tr>
+              <tr><th class="resultPhysYHeading">クリティカル率:</td><td id="resultPhysYCriticalRate">-</th></tr>
+              <tr><th class="resultPhysYHeading">ブロック:</td><td id="resultPhysYBlockDamage">-</th></tr>
+              <tr><th class="resultPhysYHeading">ブロック率:</td><td id="resultPhysYBlockRate">-</th></tr>
+              <tr><th class="resultPhysYHeading">攻撃回数:</td><td id="resultPhysYTimes">-</th></tr>
+              <tr><th class="resultPhysYHeading">備考:</td><td id="resultPhysYNote">-</th></tr>
+            </table>
+          </div>
+          <div id="resultPhysH" class="item-hidden">
+            <table>
+              <tr><th class="resultPhysHHeading">通常:</td><td id="resultPhysHNormalDamage">-</th></tr>
+              <tr><th class="resultPhysHHeading">通常ガード:</td><td id="resultPhysHNormalGuardDamage">-</th></tr>
+              <tr><th class="resultPhysHHeading">通常率:</td><td id="resultPhysHNormalRate">-</th></tr>
+              <tr><th class="resultPhysHHeading">クリティカル:</td><td id="resultPhysHCriticalDamage">-</th></tr>
+              <tr><th class="resultPhysHHeading">クリティカルガード:</td><td id="resultPhysHCriticalGuardDamage">-</th></tr>
+              <tr><th class="resultPhysHHeading">クリティカル率:</td><td id="resultPhysHCriticalRate">-</th></tr>
+              <tr><th class="resultPhysHHeading">ブロック:</td><td id="resultPhysHBlockDamage">-</th></tr>
+              <tr><th class="resultPhysHHeading">ブロックガード:</td><td id="resultPhysHBlockGuardDamage">-</th></tr>
+              <tr><th class="resultPhysHHeading">ブロック率:</td><td id="resultPhysHBlockRate">-</th></tr>
+              <tr><th class="resultPhysHHeading">攻撃回数:</td><td id="resultPhysHTimes">-</th></tr>
+              <tr><th class="resultPhysHHeading">備考:</td><td id="resultPhysHNote">-</th></tr>
+            </table>
+          </div>
+          <div id="resultMagicY" class="item-hidden">
+            <table>
+              <tr><th class="resultMagicYHeading">通常:</td><td id="resultMagicYNormalDamage">-</th></tr>
+              <tr><th class="resultMagicYHeading">通常率:</td><td id="resultMagicYNormalRate">-</th></tr>
+              <tr><th class="resultMagicYHeading">魔法クリティカル:</td><td id="resultMagicYMagicCriticalDamage">-</th></tr>
+              <tr><th class="resultMagicYHeading">魔法クリティカル率:</td><td id="resultMagicYMagicCriticalRate">0.000%</th></tr>
+              <tr><th class="resultMagicYHeading">攻撃回数:</td><td id="resultMagicYTimes">-</th></tr>
+              <tr><th class="resultMagicYHeading">備考:</td><td id="resultMagicYNote">-</th></tr>
+            </table>
+          </div>
+          <div id="resultMagicH" class="item-hidden">
+            <table>
+              <tr><th class="resultMagicHHeading">通常:</td><td id="resultMagicHNormalDamage">-</th></tr>
+              <tr><th class="resultMagicHHeading">通常ガード:</td><td id="resultMagicHNormalGuardDamage">-</th></tr>
+              <tr><th class="resultMagicHHeading">攻撃回数:</td><td id="resultMagicHTimes">-</th></tr>
+              <tr><th class="resultMagicHHeading">備考:</td><td id="resultMagicHNote">-</th></tr>
+            </table>
+          </div>
         </div>
       </div>
-      <div class="box-enemy">
-        <table><tr><th class="heading">敵</th></tr></table>
-        <table>
-          <tr>
-            <th>モンスター名:</th>
-            <td>
-              <select id="enemy" onchange="enemyChange()">
-                <option value="unselected;"></option>
-                <option value="1;2;1;4;40;0;0;0;0;100;120;120;120;120;120;120;120;120;-120;120">ベビースライム</option>
-                <option value="1;2;3;20;60;0;10;0;0;90;120;120;120;120;120;120;120;120;-120;100">スライム</option>
-                <option value="7;3;5;15;80;10;12;0;1;100;120;100;100;100;140;50;100;100;-100;100">クチリ</option>
-                <option value="7;3;6;20;80;0;0;0;0;100;100;100;100;100;160;30;120;80;-100;100">モグ</option>
-                <option value="5;2;10;0;90;0;120;1;1;100;120;90;130;90;100;100;100;100;-100;100">ビックスライム</option>
-                <option value="2;2;11;0;90;0;120;1;1;100;60;120;140;120;100;100;100;100;-100;100">レッドビックスライム</option>
-                <option value="5;2;6;0;65;0;0;0;0;100;100;100;150;50;100;100;100;100;-100;100">アメーバ</option>
-                <option value="4;6;7;0;70;0;100;0;0;100;200;100;50;50;100;100;100;100;-100;100">マリンジェリー</option>
-                <option value="5;6;7;0;80;0;0;0;0;100;100;100;150;50;100;100;100;100;-100;100">ロードジュニア</option>
-                <option value="7;9;8;0;105;0;0;1;0;100;100;100;100;100;140;60;100;100;-100;100">ゴブリン</option>
-                <option value="9;4;8;0;85;0;0;0;10;100;100;100;100;100;100;100;200;50;-100;100">ジャイアントバット</option>
-                <option value="2;10;9;10;120;10;60;10;0;10;-10;15;12;14;12;11;8;10;-5;8">ウィスプ</option>
-                <option value="7;6;12;300;140;100;120;50;2;80;50;20;20;0;60;0;20;20;-20;20">ブローン</option>
-                <option value="2;3;10;0;80;60;100;1;0;105;80;120;100;100;100;100;100;100;-100;100">メイジコボルト</option>
-                <option value="5;6;15;0;160;50;160;0;6;100;100;100;60;60;100;100;100;100;-100;100">ジェリーキング</option>
-                <option value="6;4;10;0;130;80;0;0;0;100;100;100;100;100;75;125;100;140;-100;100">チュン</option>
-                <option value="6;5;11;20;150;20;0;0;5;100;100;120;80;100;40;180;100;100;-100;100">キラービー</option>
-                <option value="8;5;9;60;5;60;0;40;0;100;140;80;100;100;100;80;80;140;-100;100">モルモームの繭</option>
-                <option value="8;5;11;35;150;60;0;2;3;100;120;80;100;100;100;80;80;120;-100;100">モルモーム</option>
-                <option value="9;5;12;0;170;20;120;0;8;100;100;100;100;100;100;100;120;80;-100;90">ポイズンモーム</option>
-                <option value="9;5;10;120;5;100;120;40;0;80;100;100;100;100;100;100;120;80;-100;100">ポイズンモームの繭</option>
-                <option value="7;7;13;0;140;0;0;5;5;100;130;110;90;90;110;80;100;100;-100;100">ラフレシア</option>
-                <option value="9;2;13;0;160;90;0;0;0;90;100;100;100;100;100;100;140;60;-100;100">ベノムジェリー</option>
-                <option value="2;3;13;100;170;0;0;0;0;100;120;80;120;80;100;100;100;100;-100;100">ボア</option>
-                <option value="7;7;18;200;140;260;200;4;5;100;130;100;100;80;120;70;90;100;-100;100">ドライアード</option>
-                <option value="7;3;14;0;190;20;0;0;8;100;100;100;100;100;140;60;100;100;-100;100">マウンテンゴブリン</option>
-                <option value="9;4;15;80;190;80;0;0;0;100;100;100;100;100;80;120;120;80;-100;100">ダーククロウ</option>
-                <option value="7;3;15;0;140;0;0;0;0;100;100;100;90;110;140;100;100;100;-100;100">ナッツラット</option>
-                <option value="4;9;20;30;200;50;250;0;0;100;100;100;70;130;100;100;100;100;-100;100">山神</option>
-                <option value="9;7;21;300;150;140;190;3;20;100;110;100;100;100;100;100;130;90;-100;95">ヴァルギド</option>
-                <option value="9;7;18;0;120;0;0;1;8;100;110;100;100;100;100;100;130;90;-100;95">ヴァルプラント</option>
-                <option value="1;3;14;100;170;0;0;0;0;100;100;100;100;100;100;100;100;100;-100;100">トロッコチュウ</option>
-                <option value="7;1;18;300;250;300;0;5;5;100;100;100;100;100;150;50;100;100;-100;100">古の石像</option>
-                <option value="5;2;17;0;176;0;0;0;0;100;100;100;140;60;100;100;100;100;-100;100">ヘドロン</option>
-                <option value="11;10;17;0;195;80;0;0;0;0;100;100;100;100;100;100;100;100;140;50">ポワゴースト</option>
-                <option value="5;2;23;0;200;0;0;0;0;100;100;100;100;100;100;100;100;100;-100;100">ビックヘドロン</option>
-                <option value="3;2;19;0;195;0;0;0;0;90;140;60;100;100;100;100;100;100;-100;100">ブルースライム</option>
-                <option value="3;3;20;0;215;150;0;0;0;100;120;80;100;100;100;100;100;100;-100;100">白ウサギ</option>
-                <option value="3;3;22;200;230;0;0;5;8;100;120;80;100;100;100;100;80;120;-100;100">暴れトナカイ</option>
-                <option value="3;3;27;200;300;50;200;0;15;100;150;50;110;90;110;90;100;100;-100;100">ビックフット</option>
-                <option value="7;1;23;200;250;0;0;3;20;100;100;100;100;100;140;60;100;100;-100;100">オーク</option>
-                <option value="6;5;22;0;240;250;250;0;0;100;100;100;120;80;50;150;100;100;-100;100">ノクターバタフライ</option>
-                <option value="4;7;22;150;256;100;0;5;5;100;130;130;80;120;120;80;70;70;-100;100">シビレプラント</option>
-                <option value="2;8;23;120;293;0;0;6;15;100;40;140;110;120;100;100;100;100;-100;100">リザードマン</option>
-                <option value="4;10;21;0;280;100;210;4;10;0;100;100;60;130;100;100;100;100;-100;90">ゴースト</option>
-                <option value="7;7;21;150;270;0;0;0;4;100;130;110;90;90;150;60;100;100;-100;100">木人</option>
-                <option value="7;9;24;230;260;400;0;120;8;80;120;20;130;100;130;20;70;70;-100;100">鉄人</option>
-                <option value="2;4;28;100;350;40;340;10;15;100;50;150;100;120;100;100;100;100;-100;100">フェニックス</option>
-                <option value="6;3;17;0;190;0;0;0;0;100;100;100;100;100;50;150;100;100;-100;100">ピヨ</option>
-                <option value="6;3;23;0;250;0;0;8;14;100;100;100;100;100;50;150;100;100;-100;100">コッケー</option>
-                <option value="5;6;24;0;236;100;360;7;3;100;100;100;160;-50;100;100;100;100;-100;100">シズマリカエル</option>
-                <option value="9;3;18;0;195;0;0;8;8;100;100;100;100;100;100;100;140;60;-100;100">ジャイアントマウス</option>
-                <option value="3;9;25;120;300;80;0;8;5;100;150;50;100;100;100;100;100;100;-100;100">アイスアイ</option>
-                <option value="3;10;26;0;240;0;420;10;6;10;15;-10;10;12;10;10;10;10;-100;100">冷炎</option>
-                <option value="3;9;25;400;280;400;0;28;4;100;120;80;100;100;100;100;100;100;-100;100">アーマーアイ</option>
-                <option value="5;10;34;300;400;500;400;18;12;70;90;90;150;-100;90;90;90;90;-100;100">ウンディーネ</option>
-                <option value="11;1;21;30;280;0;0;6;8;100;140;140;140;140;140;140;180;40;200;80">スケルトン</option>
-                <option value="2;3;27;0;310;0;0;4;8;100;50;150;100;100;100;100;100;100;-100;100">グリズリー</option>
-                <option value="8;9;29;0;290;300;500;6;6;100;100;100;100;100;80;120;60;140;-100;100">ケットシー</option>
-                <option value="2;3;28;0;340;0;0;5;10;100;50;150;100;100;100;100;100;100;-100;100">グレートウリボウ</option>
-                <option value="7;7;28;350;330;0;0;5;7;100;100;100;100;100;160;10;120;80;-100;100">トキシコロジア</option>
-                <option value="7;8;28;400;360;400;0;10;12;100;70;70;130;80;80;80;120;80;-100;100">スケイルスネーク</option>
-                <option value="6;10;21;100;290;300;340;4;4;70;90;90;90;90;-100;150;90;90;-100;100">ジン</option>
-                <option value="2;7;20;0;0;0;0;0;0;100;60;140;100;100;100;100;100;100;-100;100">レッドポム</option>
-                <option value="3;7;20;0;0;0;0;0;0;100;140;60;100;100;100;100;100;100;-100;100">ブルーポム</option>
-                <option value="7;7;20;0;0;0;0;0;0;100;100;100;100;100;140;60;100;100;-100;100">オレンジポム</option>
-                <option value="6;7;20;0;0;0;0;0;0;100;100;100;100;100;60;140;100;100;-100;100">グリーンポム</option>
-                <option value="9;2;27;0;285;0;0;14;10;100;100;100;100;100;100;100;150;50;-100;100">クロコ</option>
-                <option value="9;10;30;0;260;0;350;0;0;10;12;8;10;10;10;10;14;6;-100;100">シャドウマジシャン</option>
-                <option value="9;10;28;0;300;100;0;0;0;10;12;8;10;10;10;10;14;6;-100;100">シャドウスピリット</option>
-                <option value="7;1;28;0;350;200;0;14;3;100;90;110;60;140;200;0;100;100;-100;100">サンドマン</option>
-                <option value="7;8;34;600;420;600;0;13;26;100;90;90;110;90;120;90;90;110;-100;100">サイドワインダー</option>
-                <option value="7;6;33;400;390;0;0;12;5;100;100;100;100;100;100;100;100;100;-100;100">モリモエアガエル</option>
-                <option value="7;1;38;20;370;400;400;16;3;110;90;90;90;90;-100;-100;90;90;-100;90">メルパ</option>
-                <option value="9;10;50;80;700;80;800;28;33;90;100;100;100;100;100;100;120;80;120;20">デス</option>
-                <option value="9;4;34;0;380;400;0;13;19;100;100;100;100;100;100;100;200;50;-100;100">ドレインバット</option>
-                <option value="8;1;37;610;390;600;0;120;0;100;120;120;120;120;120;120;60;140;120;120">ゴールドスケルトン</option>
-                <option value="8;10;31;0;370;0;340;23;20;1;1;1;1;1;1;1;1;1;-2;2">スペクトラム</option>
-                <option value="1;3;35;0;420;0;0;18;33;100;100;100;100;100;100;100;100;100;-100;100">ヘルハウンド</option>
-                <option value="2;2;41;0;440;0;0;20;19;100;50;150;100;100;100;100;100;100;-100;100">レッドスライム</option>
-                <option value="6;3;44;215;520;0;0;26;21;100;100;100;100;100;60;140;100;100;-100;100">ファーマープードル</option>
-                <option value="4;3;47;0;600;0;0;20;20;100;100;100;60;140;100;100;100;100;-100;100">ウォルフ</option>
-                <option value="5;3;46;0;510;425;700;18;14;100;100;100;130;70;100;100;100;100;-100;100">アクアコボルト</option>
-                <option value="5;2;45;60;410;186;0;21;24;100;100;100;150;50;100;100;100;100;-100;100">おたまスライム</option>
-                <option value="5;6;47;400;476;235;0;40;32;100;80;80;150;50;80;80;80;80;-100;100">ウォーム</option>
-                <option value="7;4;48;0;430;680;580;21;48;100;80;80;80;80;100;60;80;80;-100;100">フェザー</option>
-                <option value="6;4;46;0;470;160;0;19;19;100;100;100;100;100;75;125;100;140;-100;100">チュンEX</option>
-                <option value="6;5;47;20;520;90;0;14;40;100;100;120;80;100;40;180;100;100;-100;100">キラービーEX</option>
-                <option value="8;5;46;40;580;100;0;11;24;100;120;80;100;100;100;80;80;120;-100;100">キングモーム</option>
-                <option value="8;5;45;1415;0;1760;0;0;0;100;100;100;100;100;100;100;50;200;-100;100">キングモームの繭</option>
-                <option value="2;3;48;100;620;0;0;20;30;100;120;80;120;80;100;100;100;100;-100;100">ボアEX</option>
-                <option value="7;3;49;0;570;0;0;18;30;100;100;100;100;100;130;70;100;100;-100;100">マウンテンコボルト</option>
-                <option value="8;3;48;0;470;0;0;24;9;100;100;100;100;100;110;90;80;120;-100;100">炸裂ラット</option>
-                <option value="4;3;50;90;600;100;0;18;11;100;110;110;30;170;100;100;110;110;-100;100">メガトロチュウ</option>
-                <option value="2;9;51;100;570;600;730;21;12;100;50;150;100;110;100;100;80;120;-100;100">オバケランタン</option>
-                <option value="5;6;53;400;730;1300;510;60;0;100;130;40;130;40;100;100;100;100;-100;100">ブロギン</option>
-                <option value="7;1;75;2000;1250;1600;0;60;0;70;80;80;60;100;100;20;80;80;-100;100">ストーンゴーレム</option>
-                <option value="9;10;80;1200;900;2800;700;30;25;40;100;100;100;100;100;100;140;60;-100;100">ナイトメア</option>
-                <option value="4;2;60;10;450;6;0;0;30;100;120;120;10;140;120;120;120;120;-120;120">アシッドスライム</option>
-                <option value="5;6;53;90;670;70;580;26;27;100;100;70;130;100;100;100;100;100;-100;100">イカダチュウ</option>
-                <option value="9;6;54;0;560;0;820;30;25;100;100;100;120;80;100;100;180;20;-100;100">ドレッドダッグ</option>
-                <option value="8;1;50;910;380;900;0;120;10;100;90;90;90;90;90;90;70;120;120;120">ミスリルスケルトン</option>
-                <option value="9;3;46;120;610;120;0;21;22;100;100;100;100;100;100;100;140;60;-100;100">ギガマウス</option>
-                <option value="8;8;60;400;810;1200;810;35;25;50;40;40;60;45;45;45;40;70;-50;50">カーバンクル</option>
-                <option value="3;2;57;50;750;60;0;10;18;100;150;50;100;100;100;100;120;80;-100;100">アオコグローブ</option>
-                <option value="3;2;30;0;670;0;0;3;9;100;150;50;50;120;100;100;120;50;-100;100">ハーフグローブ</option>
-                <option value="3;2;16;0;590;0;0;1;5;100;150;50;10;140;100;100;120;10;-100;100">クォーターグローブ</option>
-                <option value="3;3;58;78;720;380;0;31;26;100;130;70;100;100;100;100;100;100;-100;100">グレートトナカイ</option>
-                <option value="3;1;62;430;900;400;0;46;28;100;130;80;130;70;100;100;100;100;-100;100">サイクロプス</option>
-                <option value="8;5;60;40;580;1700;1120;25;20;110;110;110;120;80;90;90;80;140;-100;100">花妖精</option>
-                <option value="2;5;62;100;750;1300;800;29;40;100;80;120;110;100;100;100;90;110;-100;100">鈴蜜蜂</option>
-                <option value="2;5;64;800;880;200;0;34;38;100;70;130;120;80;100;100;100;100;-100;100">ヴェスパ</option>
-                <option value="8;10;66;120;810;2500;960;25;25;80;120;120;120;120;120;120;-100;150;-120;120">光霊</option>
-                <option value="7;9;61;1400;1150;400;0;18;12;100;40;40;80;100;130;-100;40;40;-100;60">アースフラクタス</option>
-                <option value="7;3;63;1200;950;600;0;12;13;100;100;100;100;100;130;70;100;100;-100;100">エオマイア</option>
-                <option value="7;3;65;400;1300;400;0;8;28;100;100;100;100;100;130;70;100;100;-100;100">ミノタウロス</option>
-                <option value="7;9;71;1700;1100;2300;800;60;20;100;100;100;100;100;150;-100;100;100;-100;100">ノーム</option>
-                <option value="11;1;59;0;860;0;0;0;28;100;160;130;110;110;110;110;200;50;200;20">ゾンビ</option>
-                <option value="11;1;64;0;940;0;0;0;18;100;160;130;110;110;110;110;200;50;200;20">マミー</option>
-                <option value="7;7;55;300;500;300;500;10;30;100;120;120;80;80;140;60;80;120;-100;100">グリーンスティンガー</option>
-                <option value="8;7;58;120;630;120;0;0;0;100;140;100;100;80;100;80;50;150;-100;100">リフレ</option>
-                <option value="7;7;68;300;820;300;1400;30;17;100;120;100;100;80;140;60;70;130;-100;100">ハマドライアス</option>
-                <option value="8;4;48;125;800;130;0;0;0;100;100;100;100;100;120;70;70;120;-100;100">グリチック</option>
-                <option value="8;4;53;105;690;85;0;0;0;100;100;100;100;100;120;80;70;130;-100;100">ヨルカモメ</option>
-                <option value="9;4;34;20;540;600;0;16;21;100;100;100;100;100;100;100;200;50;-100;100">ブラッディバット</option>
-                <option value="1;11;3;0;0;0;0;0;0;1;0;0;0;0;0;0;0;0;-100;0">カカシ</option>
-                <option value="1;11;5;0;0;0;0;0;0;0;0;0;0;100;0;0;0;0;-100;0">水に弱いカカシ</option>
-                <option value="1;11;1;0;0;0;0;0;999;0;0;0;0;0;0;0;0;0;-100;0">ミニカカシ</option>
-                <option value="1;2;8;0;100;0;0;0;6;100;120;120;120;120;120;120;120;120;-100;100">シルバーアメーバ</option>
-                <option value="9;1;16;100;200;200;270;2;18;100;100;100;100;100;100;100;120;80;-100;100">カーネル</option>
-                <option value="10;9;50;0;600;0;720;20;32;100;95;95;95;95;95;95;95;95;-120;120">エルバーク</option>
-                <option value="6;1;12;0;200;0;0;0;10;100;100;100;100;100;60;140;100;100;-100;100">盗賊A</option>
-                <option value="4;1;12;200;180;0;0;0;10;100;100;100;60;140;100;100;100;100;-100;100">盗賊B</option>
-                <option value="1;1;13;0;170;0;0;0;0;100;100;100;100;100;100;100;100;100;-100;100">エランス兵</option>
-                <option value="2;1;14;0;0;0;350;0;0;100;100;100;100;100;100;100;100;100;-100;100">エランス魔法兵A</option>
-                <option value="6;1;14;0;0;0;350;0;0;100;100;100;100;100;100;100;100;100;-100;100">エランス魔法兵B</option>
-                <option value="6;1;50;300;450;300;400;8;35;100;100;100;100;100;80;120;100;100;-100;100">クロア</option>
-                <option value="2;1;20;300;290;0;250;0;8;100;60;140;100;100;100;100;100;100;-100;100">エレナ</option>
-                <option value="3;1;24;0;190;400;180;0;6;100;120;80;100;100;100;100;100;100;-100;100">ミミー</option>
-                <option value="3;3;27;200;230;0;200;0;0;100;130;70;100;100;100;100;100;100;-100;100">フェンリル</option>
-                <option value="7;1;31;150;300;100;0;7;6;100;100;100;100;100;120;80;100;100;-100;100">盗賊団ボス</option>
-                <option value="8;8;32;30;385;30;385;0;0;100;80;80;80;100;100;120;50;150;-100;100">ベビードラゴン</option>
-                <option value="7;9;30;420;360;160;380;20;0;40;40;10;40;60;80;20;70;20;-100;90">タワーゴーレム</option>
-                <option value="5;1;23;0;280;0;0;0;0;100;100;100;140;60;100;100;100;100;-100;100">訓練された盗賊</option>
-                <option value="4;9;26;0;0;500;300;2;4;100;100;100;80;120;100;99;100;100;-100;100">マリネ</option>
-                <option value="3;3;32;310;440;300;300;20;30;100;140;60;100;100;80;120;100;100;-100;100">シルバーウルフ</option>
-                <option value="5;6;35;820;320;1430;350;50;20;100;105;100;125;75;100;100;120;80;-100;100">スワンプタートル</option>
-                <option value="1;11;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;-100;0">異常カカシ</option>
-                <option value="1;11;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;-100;0">全耐性カカシ</option>
-                <option value="0;0;75;200;320;300;320;1;8;100;100;100;100;100;100;100;100;100;-100;100">ネクロビア</option>
-                <option value="0;0;75;150;320;200;340;0;14;100;100;100;100;100;100;100;100;100;-100;100">ネクロビア(ちょっと本気)</option>
-                <option value="1;1;30;200;380;100;0;5;8;100;100;100;100;100;100;100;100;100;-100;100">エランス兵エリート</option>
-                <option value="3;1;13;0;310;200;430;2;3;100;120;80;100;100;100;100;100;100;-100;100">エランス魔法兵エリートA</option>
-                <option value="7;1;30;0;320;200;430;2;3;100;100;100;100;100;120;80;100;100;-100;100">エランス魔法兵エリートB</option>
-                <option value="7;1;45;770;500;1860;2450;42;21;13;10;10;10;10;12;8;10;10;-45;10">レミ</option>
-                <option value="6;1;50;80;400;80;350;20;25;100;100;100;100;100;80;120;100;100;-100;100">クロア 2回目</option>
-                <option value="6;1;50;80;450;80;400;20;25;100;100;100;100;100;80;120;100;100;-100;100">クロア 3回目</option>
-                <option value="6;1;50;80;500;80;400;25;28;100;100;100;100;100;80;120;100;100;-100;100">クロア 4回目</option>
-                <option value="5;2;50;100;465;100;0;8;18;100;110;110;110;110;110;110;110;110;-100;120">ビックアメーバ</option>
-                <option value="5;2;40;100;405;100;0;7;12;100;120;120;170;30;120;120;120;120;-100;120">シルバーアメーバEX</option>
-                <option value="9;7;60;400;0;300;790;0;0;100;100;100;100;100;100;-100;100;100;-100;100">真のヴァルギド</option>
-                <option value="7;3;70;300;1250;900;1150;25;40;100;80;80;80;80;120;40;100;60;-100;100">マンティコア</option>
-                <option value="2;1;60;900;720;1000;580;0;0;100;80;80;100;100;100;100;100;100;-100;100">シルミナ</option>
-                <option value="1;11;1;25000;0;30000;0;0;0;100;0;0;0;0;0;0;0;0;-100;0">超防御カカシ</option>
-                <option value="9;10;65;2400;620;949;942;0;0;30;100;100;70;130;100;100;150;90;50;50">プラズマシャドウ</option>
-                <option value="4;10;58;1800;490;511;824;0;0;50;100;100;70;150;100;100;60;90;50;50">スペクター</option>
-                <option value="2;7;58;400;720;200;300;10;30;100;80;120;100;100;100;100;120;100;-100;100">スティンガー</option>
-                <option value="3;7;58;100;340;100;780;6;0;100;120;80;100;100;100;100;120;100;-100;100">ブレイカー</option>
-                <option value="7;7;58;150;480;500;520;3;25;100;120;100;100;100;120;80;120;100;-100;100">ヒーラー</option>
-                <option value="2;1;40;250;550;200;0;23;26;100;80;120;100;100;100;100;100;100;-100;100">シルミナの兵</option>
-                <option value="3;1;43;0;480;420;870;8;14;100;120;80;100;100;100;100;100;100;-100;100">シルミナの魔法兵</option>
-                <option value="3;8;65;800;850;800;1470;16;41;90;130;30;100;90;40;90;90;90;-110;90">エンシェントドラゴン</option>
-                <option value="3;2;57;340;2750;480;0;14;25;100;150;50;100;100;100;100;120;80;-100;100">マザーグローブ</option>
-                <option value="3;8;61;730;750;630;1050;20;20;100;150;50;115;100;100;100;100;100;-100;100">アイスドラゴン</option>
-                <option value="10;7;68;620;820;1100;940;12;15;100;80;80;80;80;80;80;80;80;-120;120">アザトゥース</option>
-                <option value="11;7;68;50000;740;50000;800;20;0;90;100;100;100;100;100;100;100;100;0;80">災厄の種</option>
-                <option value="5;1;60;180;780;60;0;46;29;100;100;100;100;100;100;100;100;100;-100;100">アルモニカ兵</option>
-                <option value="3;10;63;900;410;800;980;39;14;180;250;150;200;200;200;200;220;180;-160;160">マヤ</option>
-                <option value="3;10;60;0;720;0;0;0;0;0;150;0;0;0;0;0;0;0;0;0">アイスポワ</option>
-                <option value="8;10;60;0;720;0;0;0;0;0;0;0;0;0;0;0;0;150;0;0">シャインポワ</option>
-              </select>
-            </td>
-          </tr>
-        </table>
-        <div id="enemyPhysY1">
-          <table>
-            <tr>
-              <th>潜在属性:</th>
-              <td>
-                <select id="enemyPhysElem" onchange="enemyPhysElemChange()">
-                  <option></option>
-                  <option>無属性</option>
-                  <option>火属性</option>
-                  <option>氷属性</option>
-                  <option>雷属性</option>
-                  <option>水属性</option>
-                  <option>風属性</option>
-                  <option>地属性</option>
-                  <option>光属性</option>
-                  <option>闇属性</option>
-                  <option>命属性</option>
-                  <option>滅属性</option>
-                </select>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div id="enemyPhys">
-          <table>
-            <tr>
-              <th>種族:</th>
-              <td>
-                <select id="enemyPhysType" onchange="enemyPhysTypeChange()">
-                  <option></option>
-                  <option>人型</option>
-                  <option>スライム</option>
-                  <option>魔獣</option>
-                  <option>有翼</option>
-                  <option>昆虫</option>
-                  <option>水棲</option>
-                  <option>植物</option>
-                  <option>ドラゴン</option>
-                  <option>魔法生物</option>
-                  <option>非実体</option>
-                  <option>無機</option>
-                </select>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div id="enemyPhysY2">
-          <table>
-            <tr><th>DEF:</th><td><input type="number" id="enemyPhysYDef" onchange="result()"></td></tr>
-            <tr><th>BLO:</th><td><input type="number" id="enemyPhysYBlo" onchange="result()"></td></tr>
-          </table>
-          <table>
-            <tr><th>無属性耐性:</th><td><input type="number" id="enemyPhysYNeResist" onchange="result()"></td></tr>
-          </table>
-          <table>
-            <tr><th><label><input type="checkbox" id="enemyPhysYPetrify" onchange="enemyPhysYPetrifyChange()">石化</label></th></tr>
-          </table>
-        </div>
-        <div id="enemyPhysH" class="item-hidden">
-          <table>
-            <tr><th>ATK:</th><td><input type="number" id="enemyPhysHAtk" onchange="result()"></td></tr>
-            <tr><th>CRI:</th><td><input type="number" id="enemyPhysHCri" onchange="result()"></td></tr>
-          </table>
-          <table>
-            <tr>
-              <th>物理攻撃名:</th>
-              <td>
-                <select id="enemyPhysHAtack" onchange="enemyPhysHAtackChange()">
-                  <option value="unselected;"></option>
-                  <option value="100;100;0;1;モンスターによって攻撃属性が異なる">通常攻撃</option>
-                  <option value="100;100;1;2;-">散斬</option>
-                  <option value="100;100;1;1;-">一閃翔破</option>
-                  <option value="100;150;1;1;-">鉄球投げ</option>
-                </select>
-              </td>
-            </tr>
-          </table>
-          <table>
-            <tr><th>ATK倍率:</td><td><input type="number" id="enemyPhysHAtackAtk" onchange="result()"></th></tr>
-            <tr><th>威力倍率:</td><td><input type="number" id="enemyPhysHAtackPower" onchange="result()"></th></tr>
-          </table>
-          <table>
-            <tr>
-              <th>攻撃属性:</th>
-              <td>
-                <select id="enemyPhysHAtackElem" onchange="enemyPhysHAtackElemChange()">
-                  <option></option>
-                  <option>無属性</option>
-                  <option>火属性</option>
-                  <option>氷属性</option>
-                  <option>雷属性</option>
-                  <option>水属性</option>
-                  <option>風属性</option>
-                  <option>地属性</option>
-                  <option>光属性</option>
-                  <option>闇属性</option>
-                  <option>命属性</option>
-                  <option>滅属性</option>
-                </select>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div id="enemyMagicY" class="item-hidden">
-          <table>
-            <tr><th>RES:</th><td><input type="number" id="enemyMagicYRes" onchange="result()"></td></tr>
-          </table>
-          <table>
-            <tr><th id="enemyMagicYElemResistHeading">属性耐性:</th><td><input type="number" id="enemyMagicYElemResist" onchange="result()"></td></tr>
-          </table>
-          <table>
-            <tr>
-              <th>ステータス異常:</th>
-              <td>
-                <select id="enemyMagicYStatusAilment" onchange="enemyMagicYStatusAilmentChange()">
-                  <option>正常</option>
-                  <option>火傷</option>
-                  <option>凍結</option>
-                  <option>麻痺</option>
-                  <option>沈黙</option>
-                  <option>混乱</option>
-                  <option>石化</option>
-                  <option>眩惑</option>
-                  <option>猛毒</option>
-                </select>
-              </td>
-            </tr>
-          </table>
-          <table>
-            <tr><th><label><input type="checkbox" id="enemyMagicYAilmentElem" onchange="result()">異常属性効果</label></th></tr>
-          </table>
-        </div>
-        <div id="enemyMagicH" class="item-hidden">
-          <table>
-            <tr><th>MAG:</th><td><input type="number" id="enemyMagicHMag" onchange="result()"></td></tr>
-          </table>
-          <table>
-            <tr>
-              <th>魔法攻撃名:</th>
-              <td>
-                <select id="enemyMagicHAtack" onchange="enemyMagicHAtackChange()">
-                  <option value="unselected;"></option>
-                  <!-- スマッシュガストの番号が変わる場合にresultMagicH()の修正が必要 -->
-                  <option value=";;1;対石化時追加ダメージ(石化倍率60→100)">スマッシュガスト</option>
-                </select>
-              </td>
-            </tr>
-          </table>
-          <table>
-            <tr><th>威力倍率:</th><td><input type="number" id="enemyMagicHAtackPower" onchange="result()"></td></tr>
-          </table>
-          <table>
-            <tr>
-              <th>攻撃属性:</th>
-              <td>
-                <select id="enemyMagicHAtackElem" onchange="enemyMagicHAtackElemChange()">
-                  <option></option>
-                  <option>無属性</option>
-                  <option>火属性</option>
-                  <option>氷属性</option>
-                  <option>雷属性</option>
-                  <option>水属性</option>
-                  <option>風属性</option>
-                  <option>地属性</option>
-                  <option>光属性</option>
-                  <option>闇属性</option>
-                  <option>命属性</option>
-                  <option>滅属性</option>
-                </select>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div id="enemyY">
-          <table>
-            <tr><th><label><input type="checkbox" id="enemyYBalanceBreak" onchange="result()">バランスブレイク</label></th></tr>
-          </table>
-        </div>
+      <!-- <div class="separator"></div> -->
+      <div class="ui segment box-link right">
+        <i class="github icon"></i>
+        <a href="https://github.com/vandal6q/yuendamage">https://github.com/vandal6q/yuendamage</a>
       </div>
-    </div>
-    <div class="column">
-      <div class="box-result">
-        <table><tr><th class="heading">結果</th></tr></table>
-        <div id="resultPhysY">
-          <table>
-            <tr><th class="resultPhysYHeading">通常:</td><td id="resultPhysYNormalDamage">-</th></tr>
-            <tr><th class="resultPhysYHeading">通常率:</td><td id="resultPhysYNormalRate">-</th></tr>
-            <tr><th class="resultPhysYHeading">クリティカル:</td><td id="resultPhysYCriticalDamage">-</th></tr>
-            <tr><th class="resultPhysYHeading">クリティカル率:</td><td id="resultPhysYCriticalRate">-</th></tr>
-            <tr><th class="resultPhysYHeading">ブロック:</td><td id="resultPhysYBlockDamage">-</th></tr>
-            <tr><th class="resultPhysYHeading">ブロック率:</td><td id="resultPhysYBlockRate">-</th></tr>
-            <tr><th class="resultPhysYHeading">攻撃回数:</td><td id="resultPhysYTimes">-</th></tr>
-            <tr><th class="resultPhysYHeading">備考:</td><td id="resultPhysYNote">-</th></tr>
-          </table>
-        </div>
-        <div id="resultPhysH" class="item-hidden">
-          <table>
-            <tr><th class="resultPhysHHeading">通常:</td><td id="resultPhysHNormalDamage">-</th></tr>
-            <tr><th class="resultPhysHHeading">通常ガード:</td><td id="resultPhysHNormalGuardDamage">-</th></tr>
-            <tr><th class="resultPhysHHeading">通常率:</td><td id="resultPhysHNormalRate">-</th></tr>
-            <tr><th class="resultPhysHHeading">クリティカル:</td><td id="resultPhysHCriticalDamage">-</th></tr>
-            <tr><th class="resultPhysHHeading">クリティカルガード:</td><td id="resultPhysHCriticalGuardDamage">-</th></tr>
-            <tr><th class="resultPhysHHeading">クリティカル率:</td><td id="resultPhysHCriticalRate">-</th></tr>
-            <tr><th class="resultPhysHHeading">ブロック:</td><td id="resultPhysHBlockDamage">-</th></tr>
-            <tr><th class="resultPhysHHeading">ブロックガード:</td><td id="resultPhysHBlockGuardDamage">-</th></tr>
-            <tr><th class="resultPhysHHeading">ブロック率:</td><td id="resultPhysHBlockRate">-</th></tr>
-            <tr><th class="resultPhysHHeading">攻撃回数:</td><td id="resultPhysHTimes">-</th></tr>
-            <tr><th class="resultPhysHHeading">備考:</td><td id="resultPhysHNote">-</th></tr>
-          </table>
-        </div>
-        <div id="resultMagicY" class="item-hidden">
-          <table>
-            <tr><th class="resultMagicYHeading">通常:</td><td id="resultMagicYNormalDamage">-</th></tr>
-            <tr><th class="resultMagicYHeading">通常率:</td><td id="resultMagicYNormalRate">-</th></tr>
-            <tr><th class="resultMagicYHeading">魔法クリティカル:</td><td id="resultMagicYMagicCriticalDamage">-</th></tr>
-            <tr><th class="resultMagicYHeading">魔法クリティカル率:</td><td id="resultMagicYMagicCriticalRate">0.000%</th></tr>
-            <tr><th class="resultMagicYHeading">攻撃回数:</td><td id="resultMagicYTimes">-</th></tr>
-            <tr><th class="resultMagicYHeading">備考:</td><td id="resultMagicYNote">-</th></tr>
-          </table>
-        </div>
-        <div id="resultMagicH" class="item-hidden">
-          <table>
-            <tr><th class="resultMagicHHeading">通常:</td><td id="resultMagicHNormalDamage">-</th></tr>
-            <tr><th class="resultMagicHHeading">通常ガード:</td><td id="resultMagicHNormalGuardDamage">-</th></tr>
-            <tr><th class="resultMagicHHeading">攻撃回数:</td><td id="resultMagicHTimes">-</th></tr>
-            <tr><th class="resultMagicHHeading">備考:</td><td id="resultMagicHNote">-</th></tr>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="separator"></div>
-    <div class="box-link">
-      <a href="https://github.com/vandal6q/yuendamage">https://github.com/vandal6q/yuendamage</a>
     </div>
     <script src="script.js"></script>
   </body>
