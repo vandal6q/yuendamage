@@ -1,0 +1,83 @@
+@charset "utf-8";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.column {
+  float: left;
+}
+
+.separator {
+  clear: left;
+}
+
+[class^="box"] {
+  margin: 8px 8px 0;
+}
+
+.box-friend,
+.box-enemy {
+  width: 344px;
+}
+
+.item-hidden {
+  display: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  font-weight: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 0 2px 0 0;
+}
+
+input[type="number"] {
+  text-align: right;
+  width: 56px;
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.title {
+  font-size: 115%;
+}
+
+.box-situation label {
+  float: left;
+  margin: 0 4px 0 0;
+}
+
+.heading {
+  font-weight: bold;
+}
+
+.resultPhysYHeading {
+  min-width: 121px;
+}
+
+.resultPhysHHeading,
+.resultMagicYHeading {
+  min-width: 153px;
+}
+
+.resultMagicHHeading {
+  min-width: 89px;
+}
+
+#friendMagicYAtack {
+  width: 255px;
+}
