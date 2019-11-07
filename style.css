@@ -2,6 +2,9 @@
 *{
   font-weight: bold;
 }
+body{
+  background-image: url("./img/background.jpg");
+}
 .header{
   margin: 10px 0px !important;
   text-align: center !important;
@@ -10,11 +13,14 @@
   margin: 5px 0px !important;
 }
 
+.title{
+  margin: 2% 2% !important;
+}
 
 .item-hidden {
   display: none;
 }
-
+ 
 input[type="number"] {
   text-align: right;
   width: 56px;
