@@ -20,7 +20,7 @@ body{
 .item-hidden {
   display: none;
 }
-
+ 
 input[type="number"] {
   text-align: right;
   width: 56px;
