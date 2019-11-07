@@ -7,19 +7,15 @@
   margin: 5px 0px !important;
 }
 
-/* .box-friend,
-.box-enemy {
-  width: 344px;
-} */
 
 .item-hidden {
   display: none;
 }
 
-/* input[type="radio"],
-input[type="checkbox"] {
-  margin: 0 2px 0 0;
-}  */
+.under{
+  /* text-decoration: underline; */
+  border-bottom: solid 3px #87CEFA !important;
+}
 
 input[type="number"] {
   text-align: right;
