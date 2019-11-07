@@ -24,12 +24,10 @@
             <table><tr><th class="heading">味方</th></tr></table>
             <div id="friendPhysY">
               <div class="ui input focus">
-                ATK
-                <input type="number" placeholder="0" onchange="result()" id="friendPhysYAtk">
+                ATK<input type="number" placeholder="0" onchange="result()" id="friendPhysYAtk">
               </div>
               <div class="ui input focus">
-                CRI
-                <input type="number" placeholder="0" onchange="result()" id="friendPhysYCri">
+                CRI<input type="number" placeholder="0" onchange="result()" id="friendPhysYCri">
               </div>
               <table>
                 <tr>
@@ -269,10 +267,10 @@
               </table>
             </div>
             <div id="friendH" class="item-hidden">
-              <table>
-                <tr><th><label><input type="checkbox" id="friendHBalanceBreak" onchange="result()">バランスブレイク</label></th></tr>
-                <tr><th><label><input type="checkbox" id="friendHCushionBottle" onchange="result()">クッションボトル(仲間キャラクター)</label></th></tr>
-              </table>
+              <!-- <table> -->
+                <label><input type="checkbox" id="friendHBalanceBreak" onchange="result()">バランスブレイク</label>
+                <label><input type="checkbox" id="friendHCushionBottle" onchange="result()">クッションボトル(仲間キャラクター)</label>
+              <!-- </table> -->
             </div>
           </div>
           <div class="box-enemy">
@@ -641,7 +639,7 @@
               </table>
             </div>
             <div id="enemyY">
-              <label><input type="checkbox" id="enemyYBalanceBreak" onchange="result()">バランスブレイク</label>
+              <label><input type="checkbox" id="enemyYBalanceBreak" onchange="result()">バランスブレイク</label></th></tr>
             </div>
           </div>
         </div>

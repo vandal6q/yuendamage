@@ -21,16 +21,17 @@ input[type="checkbox"] {
   margin: 0 2px 0 0;
 }  */
 
-/* input[type="number"] {
+input[type="number"] {
   text-align: right;
   width: 56px;
   -moz-appearance: textfield;
-} */
+}
 
-/* input[type="number"]::-webkit-outer-spin-button,
+/* inputのスピンボタンを削除する */
+input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
-} */
+}
 
 .box-result{
   text-align: left;
@@ -40,7 +41,7 @@ input[type="number"]::-webkit-inner-spin-button {
   font-weight: bold;
 }
 
-/* .resultPhysYHeading {
+.resultPhysYHeading {
   min-width: 121px;
 }
 
@@ -55,4 +56,4 @@ input[type="number"]::-webkit-inner-spin-button {
 
 #friendMagicYAtack {
   width: 255px;
-} */
+}
