@@ -17,18 +17,22 @@
         <label><input type="radio" name="situation" onchange="situationChange()">魔法与ダメージ</label>
         <label><input type="radio" name="situation" onchange="situationChange()">魔法被ダメージ</label>
       </div>
-      <!-- <div class="separator"></div> -->
       <div class="ui two column grid">
         <div class="ui segment column">
           <div class="box-friend">
-            <table><tr><th class="heading under">味方</th></tr></table>
+            <!-- <table><tr><th class="heading">味方</th></tr></table> -->
+            <div class="ui header heading">味方</div>
             <div id="friendPhysY">
-              <div class="ui input focus">
-                ATK<input type="number" placeholder="0" onchange="result()" id="friendPhysYAtk">
-              </div>
-              <div class="ui input focus">
-                CRI<input type="number" placeholder="0" onchange="result()" id="friendPhysYCri">
-              </div>
+              <table>
+                <tr>
+                  <th>ATK:</th>
+                  <td><input type="number" id="friendPhysYAtk" onchange="result()"></td>
+                </tr>
+                <tr>
+                  <th>CRI:</th>
+                  <td><input type="number" id="friendPhysYCri" onchange="result()"></td>
+                </tr>
+              </table>
               <table>
                 <tr>
                   <th>物理攻撃名:</th>
@@ -267,14 +271,16 @@
               </table>
             </div>
             <div id="friendH" class="item-hidden">
-              <!-- <table> -->
-                <label><input type="checkbox" id="friendHBalanceBreak" onchange="result()">バランスブレイク</label>
+              <table>
+                <tr><th>
+                  <label><input type="checkbox" id="friendHBalanceBreak" onchange="result()">バランスブレイク</label>
+                </th></tr>
                 <label><input type="checkbox" id="friendHCushionBottle" onchange="result()">クッションボトル(仲間キャラクター)</label>
-              <!-- </table> -->
+              </table>
             </div>
           </div>
           <div class="box-enemy">
-            <table><tr><th class="heading under">敵</th></tr></table>
+            <div class="ui header heading">敵</div>
             <table>
               <tr>
                 <th>モンスター名:</th>
@@ -644,7 +650,7 @@
           </div>
         </div>
         <div class="ui segment box-result column">
-          <div class="ui header under">結果</div>
+          <div class="ui header heading">結果</div>
           <div id="resultPhysY">
             <table>
               <tr><th class="resultPhysYHeading">通常:</td><td id="resultPhysYNormalDamage">-</th></tr>

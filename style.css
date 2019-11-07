@@ -1,4 +1,7 @@
 /* @charset "utf-8"; */
+*{
+  font-weight: bold;
+}
 .header{
   margin: 10px 0px !important;
   text-align: center !important;
@@ -10,11 +13,6 @@
 
 .item-hidden {
   display: none;
-}
-
-.under{
-  /* text-decoration: underline; */
-  border-bottom: solid 3px #87CEFA !important;
 }
 
 input[type="number"] {
@@ -35,6 +33,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .heading {
   font-weight: bold;
+  border-bottom: solid 3px #87CEFA !important;
 }
 
 .resultPhysYHeading {
