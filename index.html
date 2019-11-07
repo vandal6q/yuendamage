@@ -10,7 +10,7 @@
   </head>
   <body>
     <div class="ui main container">
-      <h1 class="title ui header box-title">悠遠物語ダメージ計算機</h1>
+      <h1 class="title ui header box-title horizontal divider">悠遠物語ダメージ計算機</h1>
       <div class="ui segment box-situation">
         <label><input type="radio" name="situation" onchange="situationChange()" checked>物理与ダメージ</label>
         <label><input type="radio" name="situation" onchange="situationChange()">物理被ダメージ</label>
@@ -23,10 +23,6 @@
           <div class="box-friend">
             <table><tr><th class="heading">味方</th></tr></table>
             <div id="friendPhysY">
-              <!-- <table>
-                <tr><th>ATK:</th><td><input type="number" id="friendPhysYAtk" onchange="result()"></td></tr>
-                <tr><th>CRI:</th><td><input type="number" id="friendPhysYCri" onchange="result()"></td></tr>
-              </table> -->
               <div class="ui input focus">
                 ATK
                 <input type="number" placeholder="0" onchange="result()" id="friendPhysYAtk">
@@ -645,14 +641,12 @@
               </table>
             </div>
             <div id="enemyY">
-              <table>
-                <tr><th><label><input type="checkbox" id="enemyYBalanceBreak" onchange="result()">バランスブレイク</label></th></tr>
-              </table>
+              <label><input type="checkbox" id="enemyYBalanceBreak" onchange="result()">バランスブレイク</label>
             </div>
           </div>
         </div>
         <div class="ui segment box-result column">
-          <table><tr><th class="heading">結果</th></tr></table>
+          <div class="ui header">結果</div>
           <div id="resultPhysY">
             <table>
               <tr><th class="resultPhysYHeading">通常:</td><td id="resultPhysYNormalDamage">-</th></tr>

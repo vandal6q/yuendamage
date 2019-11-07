@@ -1,67 +1,46 @@
-@charset "utf-8";
-
-/* * {
-  margin: 0;
-  padding: 0;
-} */
-
-/* .column {
-  float: left;
-} */
-
-/* .separator {
-  clear: left;
-} */
-
+/* @charset "utf-8"; */
+.header{
+  margin: 10px 0px !important;
+  text-align: center !important;
+}
 .column{
   margin: 5px 0px !important;
 }
 
-.box-friend,
+/* .box-friend,
 .box-enemy {
   width: 344px;
-}
+} */
 
 .item-hidden {
   display: none;
 }
 
-/* table {
-  border-collapse: collapse;
-} */
-
-/* th, td {
-  font-weight: normal;
-  text-align: left;
-  vertical-align: top;
-} */
-
-input[type="radio"],
+/* input[type="radio"],
 input[type="checkbox"] {
   margin: 0 2px 0 0;
-}
+}  */
 
-input[type="number"] {
+/* input[type="number"] {
   text-align: right;
   width: 56px;
   -moz-appearance: textfield;
-}
+} */
 
-input[type="number"]::-webkit-outer-spin-button,
+/* input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
-}
+} */
 
-/* .box-situation label {
-  float: left;
-  margin: 0 4px 0 0;
-}  */
+.box-result{
+  text-align: left;
+}
 
 .heading {
   font-weight: bold;
 }
 
-.resultPhysYHeading {
+/* .resultPhysYHeading {
   min-width: 121px;
 }
 
@@ -76,4 +55,4 @@ input[type="number"]::-webkit-inner-spin-button {
 
 #friendMagicYAtack {
   width: 255px;
-}
+} */
