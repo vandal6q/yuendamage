@@ -2,6 +2,9 @@
 *{
   font-weight: bold;
 }
+body{
+  background-image: url("./img/background.jpg");
+}
 .header{
   margin: 10px 0px !important;
   text-align: center !important;
