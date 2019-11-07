@@ -13,6 +13,9 @@ body{
   margin: 5px 0px !important;
 }
 
+.title{
+  margin: 2% 2% !important;
+}
 
 .item-hidden {
   display: none;
