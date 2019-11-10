@@ -1,45 +1,68 @@
-/* @charset "utf-8"; */
-*{
-  font-weight: bold;
-}
-body{
-  background-image: url("./img/background.jpg");
-}
-.header{
-  margin: 10px 0px !important;
-  text-align: center !important;
-}
-.column{
-  margin: 5px 0px !important;
+@charset "utf-8";
+
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.title{
-  margin: 2% 2% !important;
+.column {
+  float: left;
+}
+
+.separator {
+  clear: left;
+}
+
+[class^="box"] {
+  margin: 8px 8px 0;
+}
+
+.box-friend,
+.box-enemy {
+  width: 344px;
 }
 
 .item-hidden {
   display: none;
 }
- 
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  font-weight: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 0 2px 0 0;
+}
+
 input[type="number"] {
   text-align: right;
   width: 56px;
   -moz-appearance: textfield;
 }
 
-/* inputのスピンボタンを削除する */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-.box-result{
-  text-align: left;
+.title {
+  font-size: 115%;
+}
+
+.box-situation label {
+  float: left;
+  margin: 0 4px 0 0;
 }
 
 .heading {
   font-weight: bold;
-  border-bottom: solid 3px #87CEFA !important;
 }
 
 .resultPhysYHeading {
