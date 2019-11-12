@@ -71,6 +71,10 @@ input[type="number"]::-webkit-inner-spin-button {
   font-weight: bold;
 }
 
+#friendPhysYAtack {
+  width: 256px;
+}
+
 #friendMagicYAtack {
-  width: 257px;
+  width: 256px;
 }
