@@ -22,6 +22,9 @@
 - 制作: vandal  
 	https://twitter.com/vandal6q  
 	バグなどありましたら連絡お願いします。検証の情報提供もお待ちしています。
+- 制作: contributorの一覧  
+	https://github.com/vandal6q/yuendamage/graphs/contributors  
+	本ツールのデザインについて、ようさんさんからアドバイスをいただきました。ありがとうございます。
 - 参考: ダメージ計算式の検証  
 	https://twitter.com/kanitabetai6/status/1189146011895123968  
 	本ツールの制作にあたり、なつさんの検証結果を参考にさせていただきました。ありがとうございます。
