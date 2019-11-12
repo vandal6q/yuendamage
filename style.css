@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 * {
-  font-size: 16px;
+  font-size: 15px;
   margin: 0;
   padding: 0;
 }
@@ -59,7 +59,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .title {
-  font-size: 18px;
+  font-size: 17.25px;
 }
 
 .box-situation label {
@@ -72,9 +72,9 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 #friendPhysYAtack {
-  width: 256px;
+  width: 263px;
 }
 
 #friendMagicYAtack {
-  width: 256px;
+  width: 263px;
 }
