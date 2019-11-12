@@ -27,6 +27,10 @@ body {
   width: 344px;
 }
 
+.box-link {
+  margin-bottom: 8px;
+}
+
 .item-hidden {
   display: none;
 }
