@@ -106,12 +106,22 @@ function friendPhysHTypeResistChange() {
 }
 
 function friendPhysHPetrifyChange() {
+  const enemyMagicHAtackElemIndex = document.getElementById('enemyMagicHAtackElem').selectedIndex;
   if (document.getElementById('friendPhysHPetrify').checked == true) {
     document.getElementById('friendMagicHStatusAilment').selectedIndex = 6;
+    if (enemyMagicHAtackElemIndex == 6) {
+      document.getElementById('friendMagicHAilmentElem').checked = true;
+    } else {
+      document.getElementById('friendMagicHAilmentElem').checked = false;
+    }
   } else {
     document.getElementById('friendMagicHStatusAilment').selectedIndex = 0;
+    if (enemyMagicHAtackElemIndex == 11) {
+      document.getElementById('friendMagicHAilmentElem').checked = true;
+    } else {
+      document.getElementById('friendMagicHAilmentElem').checked = false;
+    }
   }
-  friendMagicHStatusAilmentChange();
   result();
 }
 
@@ -233,20 +243,20 @@ function friendMagicHElemDamageChange() {
 
 function friendMagicHStatusAilmentChange() {
   const friendMagicHStatusAilmentIndex = document.getElementById('friendMagicHStatusAilment').selectedIndex;
+  const enemyMagicHAtackElemIndex = document.getElementById('enemyMagicHAtackElem').selectedIndex;
   if (friendMagicHStatusAilmentIndex == 6) {
     document.getElementById('friendPhysHPetrify').checked = true;
   } else {
     document.getElementById('friendPhysHPetrify').checked = false;
   }
-  if (document.getElementById('enemyMagicHAtackElem').selectedIndex != 0) {
+  if (enemyMagicHAtackElemIndex != 0) {
     if (friendMagicHStatusAilmentIndex == 0) {
-      if (document.getElementById('enemyMagicHAtackElem').selectedIndex == 11) {
+      if (enemyMagicHAtackElemIndex == 11) {
         document.getElementById('friendMagicHAilmentElem').checked = true;
       } else {
         document.getElementById('friendMagicHAilmentElem').checked = false;
       }
-    } else if (document.getElementById('enemyMagicHAtackElem').selectedIndex ==
-               friendMagicHStatusAilmentIndex + (friendMagicHStatusAilmentIndex % 2) * 2) {
+    } else if (enemyMagicHAtackElemIndex == friendMagicHStatusAilmentIndex + (friendMagicHStatusAilmentIndex % 2) * 2) {
       document.getElementById('friendMagicHAilmentElem').checked = true;
     } else {
       document.getElementById('friendMagicHAilmentElem').checked = false;
