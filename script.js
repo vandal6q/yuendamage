@@ -84,8 +84,12 @@ let friendHElemResistSaved = new Array(12).fill('');
 function friendPhysHElemResistChange() {
   const friendPhysHElemResist = document.getElementById('friendPhysHElemResist').value;
   const enemyPhysHAtackElemIndex = document.getElementById('enemyPhysHAtackElem').selectedIndex;
+  const enemyMagicHAtackElemIndex = document.getElementById('enemyMagicHAtackElem').selectedIndex;
   if (enemyPhysHAtackElemIndex != 0) {
     friendHElemResistSaved[enemyPhysHAtackElemIndex] = friendPhysHElemResist;
+    if (enemyPhysHAtackElemIndex == enemyMagicHAtackElemIndex) {
+      document.getElementById('friendMagicHElemResist').value = friendPhysHElemResist;
+    }
   }
   result();
 }
@@ -199,9 +203,13 @@ function friendMagicYSkillPowerChange() {
 
 function friendMagicHElemResistChange() {
   const friendMagicHElemResist = document.getElementById('friendMagicHElemResist').value;
+  const enemyPhysHAtackElemIndex = document.getElementById('enemyPhysHAtackElem').selectedIndex;
   const enemyMagicHAtackElemIndex = document.getElementById('enemyMagicHAtackElem').selectedIndex;
   if (enemyMagicHAtackElemIndex != 0) {
     friendHElemResistSaved[enemyMagicHAtackElemIndex] = friendMagicHElemResist;
+    if (enemyPhysHAtackElemIndex == enemyMagicHAtackElemIndex) {
+      document.getElementById('friendPhysHElemResist').value = friendMagicHElemResist;
+    }
   }
   result();
 }
