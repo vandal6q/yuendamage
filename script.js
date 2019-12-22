@@ -146,6 +146,7 @@ function friendMagicYAtackChange() {
 function friendMagicYAtackElemChange() {
   const friendMagicYAtackElemIndex = document.getElementById('friendMagicYAtackElem').selectedIndex;
   const enemy = document.getElementById('enemy').value.split(';');
+  const enemyMagicYStatusAilmentIndex = document.getElementById('enemyMagicYStatusAilment').selectedIndex;
   if (friendMagicYAtackElemIndex == 0) {
     document.getElementById('friendMagicYElemPowerHeading').innerText = '属性魔法威力増減:';
     document.getElementById('enemyMagicYElemResistHeading').innerText = '属性耐性:';
@@ -187,11 +188,21 @@ function friendMagicYAtackElemChange() {
     document.getElementById('friendMagicYElemPower').value = friendMagicYElemPowerSaved[friendMagicYAtackElemIndex];
     if (enemy[0] != 'unselected') {
       document.getElementById('enemyMagicYElemResist').value = enemy[friendMagicYAtackElemIndex + 8];
+      enemyMagicYElemResistChange();
+    }
+    if (enemyMagicYStatusAilmentIndex == 0) {
+      if (friendMagicYAtackElemIndex == 11) {
+        document.getElementById('enemyMagicYAilmentElem').checked = true;
+      } else {
+        document.getElementById('enemyMagicYAilmentElem').checked = false;
+      }
+    } else if (friendMagicYAtackElemIndex == enemyMagicYStatusAilmentIndex + (enemyMagicYStatusAilmentIndex % 2) * 2) {
+      document.getElementById('enemyMagicYAilmentElem').checked = true;
+    } else {
+      document.getElementById('enemyMagicYAilmentElem').checked = false;
     }
     friendMagicYElemPowerChange();
-    enemyMagicYElemResistChange();
   }
-  enemyMagicYStatusAilmentChange();
   result();
 }
 
