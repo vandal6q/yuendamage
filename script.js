@@ -135,6 +135,7 @@ function friendMagicYAtackChange() {
 
 function friendMagicYAtackElemChange() {
   const friendMagicYAtackElemIndex = document.getElementById('friendMagicYAtackElem').selectedIndex;
+  const enemy = document.getElementById('enemy').value.split(';');
   if (friendMagicYAtackElemIndex == 0) {
     document.getElementById('friendMagicYElemPowerHeading').innerText = '属性魔法威力増減:';
     document.getElementById('enemyMagicYElemResistHeading').innerText = '属性耐性:';
@@ -172,9 +173,14 @@ function friendMagicYAtackElemChange() {
     document.getElementById('friendMagicYElemPowerHeading').innerText = '滅属性魔法威力増減:';
     document.getElementById('enemyMagicYElemResistHeading').innerText = '滅属性耐性:';
   }
-  document.getElementById('friendMagicYElemPower').value = friendMagicYElemPowerSaved[friendMagicYAtackElemIndex];
-  friendMagicYElemPowerChange();
-  enemyChange();
+  if (friendMagicYAtackElemIndex != 0) {
+    document.getElementById('friendMagicYElemPower').value = friendMagicYElemPowerSaved[friendMagicYAtackElemIndex];
+    if (enemy[0] != 'unselected') {
+      document.getElementById('enemyMagicYElemResist').value = enemy[friendMagicYAtackElemIndex + 8];
+    }
+    friendMagicYElemPowerChange();
+    enemyMagicYElemResistChange();
+  }
   enemyMagicYStatusAilmentChange();
   result();
 }
@@ -353,6 +359,15 @@ function enemyPhysTypeChange() {
   result();
 }
 
+function enemyPhysYNeResistChange() {
+  const enemyPhysYNeResist = document.getElementById('enemyPhysYNeResist').value;
+  const friendMagicYAtackElemIndex = document.getElementById('friendMagicYAtackElem').selectedIndex;
+  if (friendMagicYAtackElemIndex == 1) {
+    document.getElementById('enemyMagicYElemResist').value = enemyPhysYNeResist;
+  }
+  result();
+}
+
 function enemyPhysYPetrifyChange() {
   if (document.getElementById('enemyPhysYPetrify').checked == true) {
     document.getElementById('enemyMagicYStatusAilment').selectedIndex = 6;
@@ -409,6 +424,15 @@ function enemyPhysHAtackElemChange() {
   if (enemyPhysHAtackElemIndex != 0) {
     document.getElementById('friendPhysHElemResist').value = friendHElemResistSaved[enemyPhysHAtackElemIndex];
     friendPhysHElemResistChange();
+  }
+  result();
+}
+
+function enemyMagicYElemResistChange() {
+  const enemyMagicYElemResist = document.getElementById('enemyMagicYElemResist').value;
+  const friendMagicYAtackElemIndex = document.getElementById('friendMagicYAtackElem').selectedIndex;
+  if (friendMagicYAtackElemIndex == 1) {
+    document.getElementById('enemyPhysYNeResist').value = enemyMagicYElemResist;
   }
   result();
 }

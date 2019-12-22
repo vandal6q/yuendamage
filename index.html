@@ -514,7 +514,7 @@
             <tr><th>BLO:</th><td><input type="number" id="enemyPhysYBlo" onchange="result()"></td></tr>
           </table>
           <table>
-            <tr><th>無属性耐性:</th><td><input type="number" id="enemyPhysYNeResist" onchange="result()"></td></tr>
+            <tr><th>無属性耐性:</th><td><input type="number" id="enemyPhysYNeResist" onchange="enemyPhysYNeResistChange()"></td></tr>
           </table>
           <table>
             <tr><th><label><input type="checkbox" id="enemyPhysYPetrify" onchange="enemyPhysYPetrifyChange()">石化</label></th></tr>
@@ -570,7 +570,8 @@
             <tr><th>RES:</th><td><input type="number" id="enemyMagicYRes" onchange="result()"></td></tr>
           </table>
           <table>
-            <tr><th id="enemyMagicYElemResistHeading">属性耐性:</th><td><input type="number" id="enemyMagicYElemResist" onchange="result()"></td></tr>
+            <tr><th id="enemyMagicYElemResistHeading">属性耐性:</th>
+                <td><input type="number" id="enemyMagicYElemResist" onchange="enemyMagicYElemResistChange()"></td></tr>
           </table>
           <table>
             <tr>
