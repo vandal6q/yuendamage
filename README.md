@@ -7,6 +7,7 @@
 ## 使用方法
 1. 以下のURLにアクセスするか、必要なファイルをダウンロードしてindex.htmlをブラウザで開いてください。  
 	https://vandal6q.github.io/yuendamage/
+	- 本ツールの推奨環境はWindows版およびAndroid版のGoogle Chrome最新版です。
 	- 本ツールではJavaScriptを使用しています。ブラウザでJavaScriptを有効にしてください。
 1. 必要な情報を入力・選択すると自動で計算を行い結果を表示します。
 ## 補足説明
