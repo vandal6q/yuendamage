@@ -448,40 +448,40 @@ function enemyMagicHAtackElemChange() {
   const enemyMagicHAtackElemIndex = document.getElementById('enemyMagicHAtackElem').selectedIndex;
   if (enemyMagicHAtackElemIndex == 0) {
     document.getElementById('friendMagicHElemResistHeading').innerText = '属性耐性:';
-    document.getElementById('friendMagicHElemDamageHeading').innerText = '属性ダメージ減少:';
+    document.getElementById('friendMagicHElemDamageHeading').innerText = '属性ダメージ増減:';
   } else if (enemyMagicHAtackElemIndex == 1) {
     document.getElementById('friendMagicHElemResistHeading').innerText = '無属性耐性:';
-    document.getElementById('friendMagicHElemDamageHeading').innerText = '無属性ダメージ減少:';
+    document.getElementById('friendMagicHElemDamageHeading').innerText = '無属性ダメージ増減:';
   } else if (enemyMagicHAtackElemIndex == 2) {
     document.getElementById('friendMagicHElemResistHeading').innerText = '火属性耐性:';
-    document.getElementById('friendMagicHElemDamageHeading').innerText = '火属性ダメージ減少:';
+    document.getElementById('friendMagicHElemDamageHeading').innerText = '火属性ダメージ増減:';
   } else if (enemyMagicHAtackElemIndex == 3) {
     document.getElementById('friendMagicHElemResistHeading').innerText = '氷属性耐性:';
-    document.getElementById('friendMagicHElemDamageHeading').innerText = '氷属性ダメージ減少:';
+    document.getElementById('friendMagicHElemDamageHeading').innerText = '氷属性ダメージ増減:';
   } else if (enemyMagicHAtackElemIndex == 4) {
     document.getElementById('friendMagicHElemResistHeading').innerText = '雷属性耐性:';
-    document.getElementById('friendMagicHElemDamageHeading').innerText = '雷属性ダメージ減少:';
+    document.getElementById('friendMagicHElemDamageHeading').innerText = '雷属性ダメージ増減:';
   } else if (enemyMagicHAtackElemIndex == 5) {
     document.getElementById('friendMagicHElemResistHeading').innerText = '水属性耐性:';
-    document.getElementById('friendMagicHElemDamageHeading').innerText = '水属性ダメージ減少:';
+    document.getElementById('friendMagicHElemDamageHeading').innerText = '水属性ダメージ増減:';
   } else if (enemyMagicHAtackElemIndex == 6) {
     document.getElementById('friendMagicHElemResistHeading').innerText = '風属性耐性:';
-    document.getElementById('friendMagicHElemDamageHeading').innerText = '風属性ダメージ減少:';
+    document.getElementById('friendMagicHElemDamageHeading').innerText = '風属性ダメージ増減:';
   } else if (enemyMagicHAtackElemIndex == 7) {
     document.getElementById('friendMagicHElemResistHeading').innerText = '地属性耐性:';
-    document.getElementById('friendMagicHElemDamageHeading').innerText = '地属性ダメージ減少:';
+    document.getElementById('friendMagicHElemDamageHeading').innerText = '地属性ダメージ増減:';
   } else if (enemyMagicHAtackElemIndex == 8) {
     document.getElementById('friendMagicHElemResistHeading').innerText = '光属性耐性:';
-    document.getElementById('friendMagicHElemDamageHeading').innerText = '光属性ダメージ減少:';
+    document.getElementById('friendMagicHElemDamageHeading').innerText = '光属性ダメージ増減:';
   } else if (enemyMagicHAtackElemIndex == 9) {
     document.getElementById('friendMagicHElemResistHeading').innerText = '闇属性耐性:';
-    document.getElementById('friendMagicHElemDamageHeading').innerText = '闇属性ダメージ減少:';
+    document.getElementById('friendMagicHElemDamageHeading').innerText = '闇属性ダメージ増減:';
   } else if (enemyMagicHAtackElemIndex == 10) {
     document.getElementById('friendMagicHElemResistHeading').innerText = '命属性耐性:';
-    document.getElementById('friendMagicHElemDamageHeading').innerText = '命属性ダメージ減少:';
+    document.getElementById('friendMagicHElemDamageHeading').innerText = '命属性ダメージ増減:';
   } else if (enemyMagicHAtackElemIndex == 11) {
     document.getElementById('friendMagicHElemResistHeading').innerText = '滅属性耐性:';
-    document.getElementById('friendMagicHElemDamageHeading').innerText = '滅属性ダメージ減少:';
+    document.getElementById('friendMagicHElemDamageHeading').innerText = '滅属性ダメージ増減:';
   }
   if (enemyMagicHAtackElemIndex != 0) {
     document.getElementById('friendMagicHElemResist').value = friendHElemResistSaved[enemyMagicHAtackElemIndex];
@@ -562,7 +562,7 @@ function calcMagicHDamage(guard, rand, res, elemResist, elemDamage, petrify, ail
   const r = Math.trunc(s * (elemResist / 100)) + Math.trunc(s * ((petrify + ailmentElem) / 100));
   const f = Math.trunc(r * rand);
   const g = Math.trunc(f * (guard / 100));
-  const p = Math.trunc(g * ((100 - elemDamage) / 100));
+  const p = Math.trunc(g * ((100 + elemDamage) / 100));
   return Math.trunc(p * (cushionBottle / 100));
 }
 
