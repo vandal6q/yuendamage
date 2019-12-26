@@ -106,8 +106,9 @@ function friendPhysHTypeResistChange() {
 }
 
 function friendPhysHPetrifyChange() {
+  const friendPhysHPetrifyCheck = document.getElementById('friendPhysHPetrify').checked;
   const enemyMagicHAtackElemIndex = document.getElementById('enemyMagicHAtackElem').selectedIndex;
-  if (document.getElementById('friendPhysHPetrify').checked == true) {
+  if (friendPhysHPetrifyCheck) {
     document.getElementById('friendMagicHStatusAilment').selectedIndex = 6;
     if (enemyMagicHAtackElemIndex == 6) {
       document.getElementById('friendMagicHAilmentElem').checked = true;
@@ -391,7 +392,8 @@ function enemyPhysYNeResistChange() {
 
 function enemyPhysYPetrifyChange() {
   const friendMagicYAtackElemIndex = document.getElementById('friendMagicYAtackElem').selectedIndex;
-  if (document.getElementById('enemyPhysYPetrify').checked == true) {
+  const enemyPhysYPetrifyCheck = document.getElementById('enemyPhysYPetrify').checked;
+  if (enemyPhysYPetrifyCheck) {
     document.getElementById('enemyMagicYStatusAilment').selectedIndex = 6;
     if (friendMagicYAtackElemIndex == 6) {
       document.getElementById('enemyMagicYAilmentElem').checked = true;
@@ -469,21 +471,21 @@ function enemyMagicYElemResistChange() {
 }
 
 function enemyMagicYStatusAilmentChange() {
+  const friendMagicYAtackElemIndex = document.getElementById('friendMagicYAtackElem').selectedIndex;
   const enemyMagicYStatusAilmentIndex = document.getElementById('enemyMagicYStatusAilment').selectedIndex;
   if (enemyMagicYStatusAilmentIndex == 6) {
     document.getElementById('enemyPhysYPetrify').checked = true;
   } else {
     document.getElementById('enemyPhysYPetrify').checked = false;
   }
-  if (document.getElementById('friendMagicYAtackElem').selectedIndex != 0) {
+  if (friendMagicYAtackElemIndex != 0) {
     if (enemyMagicYStatusAilmentIndex == 0) {
-      if (document.getElementById('friendMagicYAtackElem').selectedIndex == 11) {
+      if (friendMagicYAtackElemIndex == 11) {
         document.getElementById('enemyMagicYAilmentElem').checked = true;
       } else {
         document.getElementById('enemyMagicYAilmentElem').checked = false;
       }
-    } else if (document.getElementById('friendMagicYAtackElem').selectedIndex ==
-               enemyMagicYStatusAilmentIndex + (enemyMagicYStatusAilmentIndex % 2) * 2) {
+    } else if (friendMagicYAtackElemIndex == enemyMagicYStatusAilmentIndex + (enemyMagicYStatusAilmentIndex % 2) * 2) {
       document.getElementById('enemyMagicYAilmentElem').checked = true;
     } else {
       document.getElementById('enemyMagicYAilmentElem').checked = false;
