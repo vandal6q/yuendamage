@@ -643,6 +643,8 @@ function calcMagicHDamage(guard, rand, res, elemResist, elemDamage, petrify, ail
 }
 
 function resultPhysY() {
+  const enemyPhysYPetrifyCheck = document.getElementById('enemyPhysYPetrify').checked;
+  const enemyYBalanceBreakCheck = document.getElementById('enemyYBalanceBreak').checked;
   const atk = parseFloat(document.getElementById('friendPhysYAtk').value);
   const cri = parseFloat(document.getElementById('friendPhysYCri').value);
   const atackAtk = parseFloat(document.getElementById('friendPhysYAtackAtk').value);
@@ -653,15 +655,14 @@ function resultPhysY() {
   const blo = parseFloat(document.getElementById('enemyPhysYBlo').value);
   const neResist = parseFloat(document.getElementById('enemyPhysYNeResist').value);
   let petrify = 0;
-  if (document.getElementById('enemyPhysYPetrify').checked == true) {
+  if (enemyPhysYPetrifyCheck) {
     petrify = 60;
   }
   let balanceBreak = 100;
-  if (document.getElementById('enemyYBalanceBreak').checked == true) {
+  if (enemyYBalanceBreakCheck) {
     balanceBreak = 50;
   }
-  if (Number.isNaN(atk) == true || Number.isNaN(atackAtk) == true || Number.isNaN(atackPower) == true ||
-      Number.isNaN(def) == true || Number.isNaN(neResist) == true) {
+  if (Number.isNaN(atk) || Number.isNaN(atackAtk) || Number.isNaN(atackPower) || Number.isNaN(def) || Number.isNaN(neResist)) {
     document.getElementById('resultPhysYNormalDamage').innerText = '-';
     document.getElementById('resultPhysYCriticalDamage').innerText = '-';
     document.getElementById('resultPhysYBlockDamage').innerText = '-';
@@ -676,7 +677,7 @@ function resultPhysY() {
         String(calcPhysYDamage(75, 0.85, atk, atackAtk, atackPower, elemDamage, typeDamage, def, neResist, petrify, balanceBreak)) +
         ' ~ ' + String(calcPhysYDamage(75, 1.15, atk, atackAtk, atackPower, elemDamage, typeDamage, def, neResist, petrify, balanceBreak));
   }
-  if (Number.isNaN(cri) == true || Number.isNaN(blo) == true) {
+  if (Number.isNaN(cri) || Number.isNaN(blo)) {
     document.getElementById('resultPhysYCriticalRate').innerText = '-';
     document.getElementById('resultPhysYBlockRate').innerText = '-';
   } else if (cri - blo > 0) {
@@ -711,28 +712,30 @@ function resultPhysY() {
 }
 
 function resultPhysH() {
+  const friendPhysHPetrifyCheck = document.getElementById('friendPhysHPetrify').checked;
+  const friendHBalanceBreakCheck = document.getElementById('friendHBalanceBreak').checked;
+  const friendHCushionBottleCheck = document.getElementById('friendHCushionBottle').checked;
   const def = parseFloat(document.getElementById('friendPhysHDef').value);
   const blo = parseFloat(document.getElementById('friendPhysHBlo').value);
   const elemResist = parseFloat(document.getElementById('friendPhysHElemResist').value);
   const typeResist = Number(document.getElementById('friendPhysHTypeResist').value);
   let petrify = 0;
-  if (document.getElementById('friendPhysHPetrify').checked == true) {
+  if (friendPhysHPetrifyCheck) {
     petrify = 60;
   }
   let balanceBreak = 100;
-  if (document.getElementById('friendHBalanceBreak').checked == true) {
+  if (friendHBalanceBreakCheck) {
     balanceBreak = 50;
   }
   let cushionBottle = 100;
-  if (document.getElementById('friendHCushionBottle').checked == true) {
+  if (friendHCushionBottleCheck) {
     cushionBottle = 90;
   }
   const atk = parseFloat(document.getElementById('enemyPhysHAtk').value);
   const cri = parseFloat(document.getElementById('enemyPhysHCri').value);
   const atackAtk = parseFloat(document.getElementById('enemyPhysHAtackAtk').value);
   const atackPower = parseFloat(document.getElementById('enemyPhysHAtackPower').value);
-  if (Number.isNaN(def) == true || Number.isNaN(elemResist) == true || Number.isNaN(atk) == true ||
-      Number.isNaN(atackAtk) == true || Number.isNaN(atackPower) == true) {
+  if (Number.isNaN(def) || Number.isNaN(elemResist) || Number.isNaN(atk) || Number.isNaN(atackAtk) || Number.isNaN(atackPower)) {
     document.getElementById('resultPhysHNormalDamage').innerText = '-';
     document.getElementById('resultPhysHNormalGuardDamage').innerText = '-';
     document.getElementById('resultPhysHCriticalDamage').innerText = '-';
@@ -759,7 +762,7 @@ function resultPhysH() {
         String(calcPhysHDamage(75, 25, 0.85, def, elemResist, typeResist, petrify, balanceBreak, cushionBottle, atk, atackAtk, atackPower)) +
         ' ~ ' + String(calcPhysHDamage(75, 25, 1.15, def, elemResist, typeResist, petrify, balanceBreak, cushionBottle, atk, atackAtk, atackPower));
   }
-  if (Number.isNaN(blo) == true || Number.isNaN(cri) == true) {
+  if (Number.isNaN(blo) || Number.isNaN(cri)) {
     document.getElementById('resultPhysHCriticalRate').innerText = '-';
     document.getElementById('resultPhysHBlockRate').innerText = '-';
   } else if (cri - blo > 0) {
@@ -800,6 +803,10 @@ function resultPhysH() {
 }
 
 function resultMagicY() {
+  const friendMagicYAtackIndex = document.getElementById('friendMagicYAtack').selectedIndex;
+  const enemyMagicYStatusAilmentIndex = document.getElementById('enemyMagicYStatusAilment').selectedIndex;
+  const enemyMagicYAilmentElemCheck = document.getElementById('enemyMagicYAilmentElem').checked;
+  const enemyYBalanceBreakCheck = document.getElementById('enemyYBalanceBreak').checked;
   const mag = parseFloat(document.getElementById('friendMagicYMag').value);
   const atackPower = parseFloat(document.getElementById('friendMagicYAtackPower').value);
   const elemPower = Number(document.getElementById('friendMagicYElemPower').value);
@@ -808,22 +815,22 @@ function resultMagicY() {
   const res = parseFloat(document.getElementById('enemyMagicYRes').value);
   const elemResist = parseFloat(document.getElementById('enemyMagicYElemResist').value);
   let petrify = 0;
-  if (document.getElementById('enemyMagicYStatusAilment').selectedIndex == 6) {
+  if (enemyMagicYStatusAilmentIndex == 6) {
     petrify = 60;
     // スマッシュガストの番号が変更された場合に値の修正が必要
-    if (document.getElementById('friendMagicYAtack').selectedIndex == 26) {
+    if (friendMagicYAtackIndex == 26) {
       petrify = 100;
     }
   }
   let ailmentElem = 0;
-  if (document.getElementById('enemyMagicYAilmentElem').checked == true) {
+  if (enemyMagicYAilmentElemCheck) {
     ailmentElem = 20;
   }
   let balanceBreak = 100;
-  if (document.getElementById('enemyYBalanceBreak').checked == true) {
+  if (enemyYBalanceBreakCheck) {
     balanceBreak = 50;
   }
-  if (Number.isNaN(mag) == true || Number.isNaN(atackPower) == true || Number.isNaN(res) == true || Number.isNaN(elemResist) == true) {
+  if (Number.isNaN(mag) || Number.isNaN(atackPower) || Number.isNaN(res) || Number.isNaN(elemResist)) {
     document.getElementById('resultMagicYNormalDamage').innerText = '-';
     document.getElementById('resultMagicYMagicCriticalDamage').innerText = '-';
   } else {
@@ -849,32 +856,37 @@ function resultMagicY() {
 }
 
 function resultMagicH() {
+  const friendMagicHAilmentElemCheck = document.getElementById('friendMagicHAilmentElem').checked;
+  const friendMagicHStatusAilmentIndex = document.getElementById('friendMagicHStatusAilment').selectedIndex;
+  const friendHBalanceBreakCheck = document.getElementById('friendHBalanceBreak').checked;
+  const friendHCushionBottleCheck = document.getElementById('friendHCushionBottle').checked;
+  const enemyMagicHAtackIndex = document.getElementById('enemyMagicHAtack').selectedIndex;
   const res = parseFloat(document.getElementById('friendMagicHRes').value);
   const elemResist = parseFloat(document.getElementById('friendMagicHElemResist').value);
   const elemDamage = Number(document.getElementById('friendMagicHElemDamage').value);
   let petrify = 0;
-  if (document.getElementById('friendMagicHStatusAilment').selectedIndex == 6) {
+  if (friendMagicHStatusAilmentIndex == 6) {
     petrify = 60;
     // スマッシュガストの番号が変更された場合に値の修正が必要
-    if (document.getElementById('enemyMagicHAtack').selectedIndex == 1) {
+    if (enemyMagicHAtackIndex == 1) {
       petrify = 100;
     }
   }
   let ailmentElem = 0;
-  if (document.getElementById('friendMagicHAilmentElem').checked == true) {
+  if (friendMagicHAilmentElemCheck) {
     ailmentElem = 20;
   }
   let balanceBreak = 100;
-  if (document.getElementById('friendHBalanceBreak').checked == true) {
+  if (friendHBalanceBreakCheck) {
     balanceBreak = 50;
   }
   let cushionBottle = 100;
-  if (document.getElementById('friendHCushionBottle').checked == true) {
+  if (friendHCushionBottleCheck) {
     cushionBottle = 90;
   }
   const mag = parseFloat(document.getElementById('enemyMagicHMag').value);
   const atackPower = parseFloat(document.getElementById('enemyMagicHAtackPower').value);
-  if (Number.isNaN(res) == true || Number.isNaN(elemResist) == true || Number.isNaN(mag) == true || Number.isNaN(atackPower) == true) {
+  if (Number.isNaN(res) || Number.isNaN(elemResist) || Number.isNaN(mag) || Number.isNaN(atackPower)) {
     document.getElementById('resultMagicHNormalDamage').innerText = '-';
     document.getElementById('resultMagicHNormalGuardDamage').innerText = '-';
   } else {
