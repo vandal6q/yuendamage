@@ -510,6 +510,7 @@ function enemyMagicHAtackChange() {
 }
 
 function enemyMagicHAtackElemChange() {
+  const friendMagicHStatusAilmentIndex = document.getElementById('friendMagicHStatusAilment').selectedIndex;
   const enemyMagicHAtackElemIndex = document.getElementById('enemyMagicHAtackElem').selectedIndex;
   if (enemyMagicHAtackElemIndex == 0) {
     document.getElementById('friendMagicHElemResistHeading').innerText = '属性耐性:';
@@ -551,10 +552,20 @@ function enemyMagicHAtackElemChange() {
   if (enemyMagicHAtackElemIndex != 0) {
     document.getElementById('friendMagicHElemResist').value = friendHElemResistSaved[enemyMagicHAtackElemIndex];
     document.getElementById('friendMagicHElemDamage').value = friendMagicHElemDamageSaved[enemyMagicHAtackElemIndex];
+    if (friendMagicHStatusAilmentIndex == 0) {
+      if (enemyMagicHAtackElemIndex == 11) {
+        document.getElementById('friendMagicHAilmentElem').checked = true;
+      } else {
+        document.getElementById('friendMagicHAilmentElem').checked = false;
+      }
+    } else if (enemyMagicHAtackElemIndex == friendMagicHStatusAilmentIndex + (friendMagicHStatusAilmentIndex % 2) * 2) {
+      document.getElementById('friendMagicHAilmentElem').checked = true;
+    } else {
+      document.getElementById('friendMagicHAilmentElem').checked = false;
+    }
     friendMagicHElemResistChange();
     friendMagicHElemDamageChange();
   }
-  friendMagicHStatusAilmentChange();
   result();
 }
 
