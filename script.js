@@ -390,12 +390,22 @@ function enemyPhysYNeResistChange() {
 }
 
 function enemyPhysYPetrifyChange() {
+  const friendMagicYAtackElemIndex = document.getElementById('friendMagicYAtackElem').selectedIndex;
   if (document.getElementById('enemyPhysYPetrify').checked == true) {
     document.getElementById('enemyMagicYStatusAilment').selectedIndex = 6;
+    if (friendMagicYAtackElemIndex == 6) {
+      document.getElementById('enemyMagicYAilmentElem').checked = true;
+    } else {
+      document.getElementById('enemyMagicYAilmentElem').checked = false;
+    }
   } else {
     document.getElementById('enemyMagicYStatusAilment').selectedIndex = 0;
+    if (friendMagicYAtackElemIndex == 11) {
+      document.getElementById('enemyMagicYAilmentElem').checked = true;
+    } else {
+      document.getElementById('enemyMagicYAilmentElem').checked = false;
+    }
   }
-  enemyMagicYStatusAilmentChange();
   result();
 }
 
