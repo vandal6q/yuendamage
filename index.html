@@ -16,6 +16,7 @@
       <label><input type="radio" name="situation" onchange="situationChange()">物理被ダメージ</label>
       <label><input type="radio" name="situation" onchange="situationChange()">魔法与ダメージ</label>
       <label><input type="radio" name="situation" onchange="situationChange()">魔法被ダメージ</label>
+      <label><input type="radio" name="situation" onchange="situationChange()">攻撃アイテム</label>
     </div>
     <div class="separator"></div>
     <div class="column">
@@ -261,6 +262,49 @@
           </table>
           <table>
             <tr><th><label><input type="checkbox" id="friendMagicHAilmentElem" onchange="result()">異常属性効果</label></th></tr>
+          </table>
+        </div>
+        <div id="friendAtackItem" class="item-hidden">
+          <table>
+            <tr>
+              <th>攻撃アイテム名:</th>
+              <td>
+                <select id="friendAtackItemAtack" onchange="friendAtackItemAtackChange()">
+                  <option value="unselected;"></option>
+                  <option value="7;1;-;90;10;-;100">割石ボム</option>
+                  <option value="8;1;-;300;8;-;100">ミルキーボム</option>
+                  <option value="3;3;敵Lv46以上で威力減少(レベル補正倍率100→75);400;6;46;75">ダイヤボム</option>
+                  <option value="2;1;敵Lv46以上で威力減少(レベル補正倍率100→75);3000;4;46;75">ギガントボム</option>
+                  <option value="6;14;敵Lv61以上で威力減少(レベル補正倍率100→80);200;14;61;80">ウィンドベル</option>
+                  <option value="7;4;説明文だと水属性表記だが実際は地属性;1000;10;-;100">オーシャンブルー</option>
+                  <option value="9;6;敵Lv76以上(76~79は不明)で威力減少(レベル補正倍率100→90);1600;4;76;90">パルサーボム</option>
+                </select>
+              </td>
+            </tr>
+          </table>
+          <table>
+            <tr>
+              <th>攻撃属性:</th>
+              <td>
+                <select id="friendAtackItemAtackElem" onchange="friendAtackItemAtackElemChange()">
+                  <option></option>
+                  <option>無属性</option>
+                  <option>火属性</option>
+                  <option>氷属性</option>
+                  <option>雷属性</option>
+                  <option>水属性</option>
+                  <option>風属性</option>
+                  <option>地属性</option>
+                  <option>光属性</option>
+                  <option>闇属性</option>
+                  <option>命属性</option>
+                  <option>滅属性</option>
+                </select>
+              </td>
+            </tr>
+          </table>
+          <table>
+            <tr><th><label><input type="checkbox" id="friendAtackItemImitor" onchange="result()">イミトール</label></th></tr>
           </table>
         </div>
         <div id="friendH" class="item-hidden">
@@ -510,7 +554,7 @@
         </div>
         <div id="enemyPhysY2">
           <table>
-            <tr><th>DEF:</th><td><input type="number" id="enemyPhysYDef" onchange="result()"></td></tr>
+            <tr><th>DEF:</th><td><input type="number" id="enemyPhysYDef" onchange="enemyPhysYDefChange()"></td></tr>
             <tr><th>BLO:</th><td><input type="number" id="enemyPhysYBlo" onchange="result()"></td></tr>
           </table>
           <table>
@@ -641,6 +685,21 @@
             <tr><th><label><input type="checkbox" id="enemyYBalanceBreak" onchange="result()">バランスブレイク</label></th></tr>
           </table>
         </div>
+        <div id="enemyAtackItem" class="item-hidden">
+          <table>
+            <tr><th>Lv:</th><td><input type="number" id="enemyAtackItemLv" onchange="enemyAtackItemLvChange()"></td></tr>
+          </table>
+          <table>
+            <tr><th>DEF:</th><td><input type="number" id="enemyAtackItemDef" onchange="enemyAtackItemDefChange()"></td></tr>
+          </table>
+          <table>
+            <tr><th id="enemyAtackItemElemResistHeading">属性耐性:</th>
+                <td><input type="number" id="enemyAtackItemElemResist" onchange="enemyAtackItemElemResistChange()"></td></tr>
+          </table>
+          <table>
+            <tr><th><label><input type="checkbox" id="enemyAtackItemLevelCorrection" onchange="result()">レベル補正</label></th></tr>
+          </table>
+        </div>
       </div>
     </div>
     <div class="column">
@@ -690,6 +749,14 @@
             <tr><th>通常率:</th><td id="resultMagicHNormalRate">100.000%</td></tr>
             <tr><th>攻撃回数:</th><td id="resultMagicHTimes">-</td></tr>
             <tr><th>備考:</th><td id="resultMagicHNote">-</td></tr>
+          </table>
+        </div>
+        <div id="resultAtackItem" class="item-hidden">
+          <table>
+            <tr><th>通常:</th><td id="resultAtackItemNormalDamage">-</td></tr>
+            <tr><th>通常率:</th><td id="resultAtackItemNormalRate">100.000%</td></tr>
+            <tr><th>攻撃回数:</th><td id="resultAtackItemTimes">-</td></tr>
+            <tr><th>備考:</th><td id="resultAtackItemNote">-</td></tr>
           </table>
         </div>
       </div>

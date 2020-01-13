@@ -5,6 +5,7 @@ function situationChange() {
   document.getElementById('friendMagicY').style.display = 'none';
   document.getElementById('friendMagicH').style.display = 'none';
   document.getElementById('friendH').style.display = 'none';
+  document.getElementById('friendAtackItem').style.display = 'none';
   document.getElementById('enemyPhysY1').style.display = 'none';
   document.getElementById('enemyPhys').style.display = 'none';
   document.getElementById('enemyPhysY2').style.display = 'none';
@@ -12,10 +13,12 @@ function situationChange() {
   document.getElementById('enemyMagicY').style.display = 'none';
   document.getElementById('enemyMagicH').style.display = 'none';
   document.getElementById('enemyY').style.display = 'none';
+  document.getElementById('enemyAtackItem').style.display = 'none';
   document.getElementById('resultPhysY').style.display = 'none';
   document.getElementById('resultPhysH').style.display = 'none';
   document.getElementById('resultMagicY').style.display = 'none';
   document.getElementById('resultMagicH').style.display = 'none';
+  document.getElementById('resultAtackItem').style.display = 'none';
   if (situation[0].checked) {
     document.getElementById('friendPhysY').style.display = 'block';
     document.getElementById('enemyPhysY1').style.display = 'block';
@@ -39,6 +42,10 @@ function situationChange() {
     document.getElementById('friendH').style.display = 'block';
     document.getElementById('enemyMagicH').style.display = 'block';
     document.getElementById('resultMagicH').style.display = 'block';
+  } else if (situation[4].checked) {
+    document.getElementById('friendAtackItem').style.display = 'block';
+    document.getElementById('enemyAtackItem').style.display = 'block';
+    document.getElementById('resultAtackItem').style.display = 'block';
   }
   result();
 }
@@ -277,23 +284,89 @@ function friendMagicHStatusAilmentChange() {
   result();
 }
 
+function friendAtackItemAtackChange() {
+  const friendAtackItemAtack = document.getElementById('friendAtackItemAtack').value.split(';');
+  const enemyAtackItemLv = document.getElementById('enemyAtackItemLv').value;
+  if (friendAtackItemAtack[0] != 'unselected') {
+    document.getElementById('friendAtackItemAtackElem').selectedIndex = friendAtackItemAtack[0];
+    document.getElementById('resultAtackItemTimes').innerText = friendAtackItemAtack[1];
+    document.getElementById('resultAtackItemNote').innerText = friendAtackItemAtack[2];
+    if (Number(enemyAtackItemLv) >= Number(friendAtackItemAtack[5])) {
+      document.getElementById('enemyAtackItemLevelCorrection').checked = true;
+    } else {
+      document.getElementById('enemyAtackItemLevelCorrection').checked = false;
+    }
+    friendAtackItemAtackElemChange();
+  } else {
+    document.getElementById('resultAtackItemTimes').innerText = '-';
+    document.getElementById('resultAtackItemNote').innerText = '-';
+  }
+  result();
+}
+
+function friendAtackItemAtackElemChange() {
+  const friendAtackItemAtackElemIndex = document.getElementById('friendAtackItemAtackElem').selectedIndex;
+  const enemy = document.getElementById('enemy').value.split(';');
+  if (friendAtackItemAtackElemIndex == 0) {
+    document.getElementById('enemyAtackItemElemResistHeading').innerText = '属性耐性:';
+  } else if (friendAtackItemAtackElemIndex == 1) {
+    document.getElementById('enemyAtackItemElemResistHeading').innerText = '無属性耐性:';
+  } else if (friendAtackItemAtackElemIndex == 2) {
+    document.getElementById('enemyAtackItemElemResistHeading').innerText = '火属性耐性:';
+  } else if (friendAtackItemAtackElemIndex == 3) {
+    document.getElementById('enemyAtackItemElemResistHeading').innerText = '氷属性耐性:';
+  } else if (friendAtackItemAtackElemIndex == 4) {
+    document.getElementById('enemyAtackItemElemResistHeading').innerText = '雷属性耐性:';
+  } else if (friendAtackItemAtackElemIndex == 5) {
+    document.getElementById('enemyAtackItemElemResistHeading').innerText = '水属性耐性:';
+  } else if (friendAtackItemAtackElemIndex == 6) {
+    document.getElementById('enemyAtackItemElemResistHeading').innerText = '風属性耐性:';
+  } else if (friendAtackItemAtackElemIndex == 7) {
+    document.getElementById('enemyAtackItemElemResistHeading').innerText = '地属性耐性:';
+  } else if (friendAtackItemAtackElemIndex == 8) {
+    document.getElementById('enemyAtackItemElemResistHeading').innerText = '光属性耐性:';
+  } else if (friendAtackItemAtackElemIndex == 9) {
+    document.getElementById('enemyAtackItemElemResistHeading').innerText = '闇属性耐性:';
+  } else if (friendAtackItemAtackElemIndex == 10) {
+    document.getElementById('enemyAtackItemElemResistHeading').innerText = '命属性耐性:';
+  } else if (friendAtackItemAtackElemIndex == 11) {
+    document.getElementById('enemyAtackItemElemResistHeading').innerText = '滅属性耐性:';
+  }
+  if (friendAtackItemAtackElemIndex != 0) {
+    if (enemy[0] != 'unselected') {
+      document.getElementById('enemyAtackItemElemResist').value = enemy[friendAtackItemAtackElemIndex + 8];
+      enemyAtackItemElemResistChange();
+    }
+  }
+  result();
+}
+
 function enemyChange() {
   const enemy = document.getElementById('enemy').value.split(';');
   const friendMagicYAtackElemIndex = document.getElementById('friendMagicYAtackElem').selectedIndex;
+  const friendAtackItemAtackElemIndex = document.getElementById('friendAtackItemAtackElem').selectedIndex;
   if (enemy[0] != 'unselected') {
     document.getElementById('enemyPhysElem').selectedIndex = enemy[0];
     document.getElementById('enemyPhysType').selectedIndex = enemy[1];
+    document.getElementById('enemyAtackItemLv').value = enemy[2];
     document.getElementById('enemyPhysYDef').value = enemy[3];
+    document.getElementById('enemyAtackItemDef').value = enemy[3];
     document.getElementById('enemyPhysHAtk').value = enemy[4];
     document.getElementById('enemyMagicYRes').value = enemy[5];
     document.getElementById('enemyMagicHMag').value = enemy[6];
     document.getElementById('enemyPhysYBlo').value = enemy[7];
     document.getElementById('enemyPhysHCri').value = enemy[8];
     document.getElementById('enemyPhysYNeResist').value = enemy[9];
+    enemyAtackItemLvChange();
     enemyPhysElemChange();
     enemyPhysTypeChange();
     if (friendMagicYAtackElemIndex != 0) {
       document.getElementById('enemyMagicYElemResist').value = enemy[friendMagicYAtackElemIndex + 8];
+      document.getElementById('enemyAtackItemElemResist').value = enemy[friendAtackItemAtackElemIndex + 8];
+    }
+    if (friendAtackItemAtackElemIndex != 0) {
+      document.getElementById('enemyMagicYElemResist').value = enemy[friendMagicYAtackElemIndex + 8];
+      document.getElementById('enemyAtackItemElemResist').value = enemy[friendAtackItemAtackElemIndex + 8];
     }
   }
   result();
@@ -381,11 +454,21 @@ function enemyPhysTypeChange() {
   result();
 }
 
+function enemyPhysYDefChange() {
+  const enemyPhysYDef = document.getElementById('enemyPhysYDef').value;
+  document.getElementById('enemyAtackItemDef').value = enemyPhysYDef;
+  result();
+}
+
 function enemyPhysYNeResistChange() {
   const enemyPhysYNeResist = document.getElementById('enemyPhysYNeResist').value;
   const friendMagicYAtackElemIndex = document.getElementById('friendMagicYAtackElem').selectedIndex;
+  const friendAtackItemAtackElemIndex = document.getElementById('friendAtackItemAtackElem').selectedIndex;
   if (friendMagicYAtackElemIndex == 1) {
     document.getElementById('enemyMagicYElemResist').value = enemyPhysYNeResist;
+  }
+  if (friendAtackItemAtackElemIndex == 1) {
+    document.getElementById('enemyAtackItemElemResist').value = enemyPhysYNeResist;
   }
   result();
 }
@@ -462,10 +545,14 @@ function enemyPhysHAtackElemChange() {
 }
 
 function enemyMagicYElemResistChange() {
-  const enemyMagicYElemResist = document.getElementById('enemyMagicYElemResist').value;
   const friendMagicYAtackElemIndex = document.getElementById('friendMagicYAtackElem').selectedIndex;
+  const friendAtackItemAtackElemIndex = document.getElementById('friendAtackItemAtackElem').selectedIndex;
+  const enemyMagicYElemResist = document.getElementById('enemyMagicYElemResist').value;
   if (friendMagicYAtackElemIndex == 1) {
     document.getElementById('enemyPhysYNeResist').value = enemyMagicYElemResist;
+  }
+  if (friendAtackItemAtackElemIndex == friendMagicYAtackElemIndex) {
+    document.getElementById('enemyAtackItemElemResist').value = enemyMagicYElemResist;
   }
   result();
 }
@@ -569,6 +656,36 @@ function enemyMagicHAtackElemChange() {
   result();
 }
 
+function enemyAtackItemLvChange() {
+  const friendAtackItemAtack = document.getElementById('friendAtackItemAtack').value.split(';');
+  const enemyAtackItemLv = document.getElementById('enemyAtackItemLv').value;
+  if (Number(enemyAtackItemLv) >= Number(friendAtackItemAtack[5])) {
+    document.getElementById('enemyAtackItemLevelCorrection').checked = true;
+  } else {
+    document.getElementById('enemyAtackItemLevelCorrection').checked = false;
+  }
+  result();
+}
+
+function enemyAtackItemDefChange() {
+  const enemyAtackItemDef = document.getElementById('enemyAtackItemDef').value;
+  document.getElementById('enemyPhysYDef').value = enemyAtackItemDef;
+  result();
+}
+
+function enemyAtackItemElemResistChange() {
+  const friendMagicYAtackElemIndex = document.getElementById('friendMagicYAtackElem').selectedIndex;
+  const friendAtackItemAtackElemIndex = document.getElementById('friendAtackItemAtackElem').selectedIndex;
+  const enemyAtackItemElemResist = document.getElementById('enemyAtackItemElemResist').value;
+  if (friendAtackItemAtackElemIndex == 1) {
+    document.getElementById('enemyPhysYNeResist').value = enemyAtackItemElemResist;
+  }
+  if (friendMagicYAtackElemIndex == friendAtackItemAtackElemIndex) {
+    document.getElementById('enemyMagicYElemResist').value = enemyAtackItemElemResist;
+  }
+  result();
+}
+
 function calcPhysYDamage(critical, rand, atk, atackAtk, atackPower, elemDamage, typeDamage, def, neResist, petrify, balanceBreak) {
   const def_ = Math.trunc(def * (balanceBreak / 100));
   const atk_ = Math.trunc(Math.trunc(atk * (critical / 100)) * (atackAtk / 100));
@@ -640,6 +757,15 @@ function calcMagicHDamage(guard, rand, res, elemResist, elemDamage, petrify, ail
   const g = Math.trunc(f * (guard / 100));
   const p = Math.trunc(g * ((100 + elemDamage) / 100));
   return Math.trunc(p * (cushionBottle / 100));
+}
+
+function calcAtackItemDamage(rand, itemDamage, def, defPower, levelCorrection, elemResist, imitor) {
+  let d = Math.trunc(Math.trunc(Math.trunc(Math.trunc((itemDamage - Math.trunc(def / defPower))
+                                           * (levelCorrection / 100)) * (elemResist / 100)) * (imitor / 1000)) * rand);
+  if (d < 0) {
+    d = 0;
+  }
+  return d;
 }
 
 function resultPhysY() {
@@ -899,9 +1025,35 @@ function resultMagicH() {
   }
 }
 
+function resultAtackItem() {
+  const friendAtackItemAtack = document.getElementById('friendAtackItemAtack').value.split(';');
+  const itemDamage = Number(friendAtackItemAtack[3]);
+  const defPower = Number(friendAtackItemAtack[4]);
+  const friendAtackItemImitorCheck = document.getElementById('friendAtackItemImitor').checked;
+  const def = parseFloat(document.getElementById('enemyAtackItemDef').value);
+  const elemResist = parseFloat(document.getElementById('enemyAtackItemElemResist').value);
+  const levelCorrectionCheck = document.getElementById('enemyAtackItemLevelCorrection').checked;
+  let imitor = 1000;
+  if (friendAtackItemImitorCheck) {
+    imitor = 666;
+  }
+  let levelCorrection = 100;
+  if (levelCorrectionCheck) {
+    levelCorrection = friendAtackItemAtack[6];
+  }
+  if (friendAtackItemAtack[0] == 'unselected' || Number.isNaN(def) || Number.isNaN(elemResist)) {
+    document.getElementById('resultAtackItemNormalDamage').innerText = '-';
+  } else {
+    document.getElementById('resultAtackItemNormalDamage').innerText =
+        String(calcAtackItemDamage(0.9, itemDamage, def, defPower, levelCorrection, elemResist, imitor)) +
+        ' ~ ' + String(calcAtackItemDamage(1.1, itemDamage, def, defPower, levelCorrection, elemResist, imitor));
+  }
+}
+
 function result() {
   resultPhysY();
   resultPhysH();
   resultMagicY();
   resultMagicH();
+  resultAtackItem();
 }
