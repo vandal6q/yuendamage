@@ -5,7 +5,7 @@
 - 本ツールをゲームの攻略および検証以外の用途で使用することを禁止します。
 - プログラムおよび計算式の誤りや実行環境による浮動小数点数の計算結果の違い、ゲームの更新による仕様変更などの影響で異なる結果になる可能性があります。
 ## 使用方法
-1. 以下のURLにアクセスするか、必要なファイルをダウンロードしてindex.htmlをブラウザで開いてください。  
+1. 以下のURLにアクセスしてください。  
 	https://vandal6q.github.io/yuendamage/
 	- 本ツールの推奨環境はWindows版およびAndroid版のGoogle Chrome最新版です。
 	- 本ツールではJavaScriptを使用しています。ブラウザでJavaScriptを有効にしてください。
@@ -29,6 +29,6 @@
 - 参考: ダメージ計算式の検証  
 	https://twitter.com/kanitabetai6/status/1189146011895123968  
 	本ツールの制作にあたり、なつさんの検証結果を参考にさせていただきました。ありがとうございます。
-- 作者様サイト: Fantasy Factory  
+- ゲーム作者様サイト: Fantasy Factory  
 	http://fafa.iinaa.net/index2.htm  
 	素晴らしい作品をありがとうございます。
