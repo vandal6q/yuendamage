@@ -577,7 +577,7 @@
           </table>
           <table>
             <tr>
-              <th>(物理攻撃名):</th>
+              <th>物理攻撃名:</th>
               <td>
                 <select id="enemyPhysHAtack" onchange="enemyPhysHAtackChange()">
                   <option value="unselected;"></option>
@@ -651,12 +651,12 @@
           </table>
           <table>
             <tr>
-              <th>(魔法攻撃名):</th>
+              <th>魔法攻撃名:</th>
               <td>
                 <select id="enemyMagicHAtack" onchange="enemyMagicHAtackChange()">
                   <option value="unselected;"></option>
                   <!-- スマッシュガストの番号が変わる場合にresultMagicH()の修正が必要 -->
-                  <option value=";;1;石化時追加ダメージ(石化倍率60→100)">スマッシュガスト</option>
+                  <option value=";0;1;石化時追加ダメージ(石化倍率60→100)">(スマッシュガスト)</option>
                 </select>
               </td>
             </tr>
@@ -720,7 +720,7 @@
             <tr><th>ブロック:</th><td id="resultPhysYBlockDamage">-</td></tr>
             <tr><th>ブロック率:</th><td id="resultPhysYBlockRate">-</td></tr>
             <tr><th>攻撃回数:</th><td id="resultPhysYTimes">-</td></tr>
-            <tr><th>備考:</th><td id="resultPhysYNote">-</td></tr>
+            <tr><th>攻撃備考:</th><td id="resultPhysYNote">-</td></tr>
           </table>
         </div>
         <div id="resultPhysH" class="item-hidden">
@@ -735,7 +735,7 @@
             <tr><th>ブロックガード:</th><td id="resultPhysHBlockGuardDamage">-</td></tr>
             <tr><th>ブロック率:</th><td id="resultPhysHBlockRate">-</td></tr>
             <tr><th>攻撃回数:</th><td id="resultPhysHTimes">-</td></tr>
-            <tr><th>備考:</th><td id="resultPhysHNote">-</td></tr>
+            <tr><th>攻撃備考:</th><td id="resultPhysHNote">-</td></tr>
           </table>
         </div>
         <div id="resultMagicY" class="item-hidden">
@@ -745,7 +745,7 @@
             <tr><th>魔法クリティカル:</th><td id="resultMagicYMagicCriticalDamage">-</td></tr>
             <tr><th>魔法クリティカル率:</th><td id="resultMagicYMagicCriticalRate">0.000%</td></tr>
             <tr><th>攻撃回数:</th><td id="resultMagicYTimes">-</td></tr>
-            <tr><th>備考:</th><td id="resultMagicYNote">-</td></tr>
+            <tr><th>攻撃備考:</th><td id="resultMagicYNote">-</td></tr>
           </table>
         </div>
         <div id="resultMagicH" class="item-hidden">
@@ -754,7 +754,7 @@
             <tr><th>通常ガード:</th><td id="resultMagicHNormalGuardDamage">-</td></tr>
             <tr><th>通常率:</th><td id="resultMagicHNormalRate">100.000%</td></tr>
             <tr><th>攻撃回数:</th><td id="resultMagicHTimes">-</td></tr>
-            <tr><th>備考:</th><td id="resultMagicHNote">-</td></tr>
+            <tr><th>攻撃備考:</th><td id="resultMagicHNote">-</td></tr>
           </table>
         </div>
         <div id="resultAtackItem" class="item-hidden">
@@ -762,7 +762,7 @@
             <tr><th>通常:</th><td id="resultAtackItemNormalDamage">-</td></tr>
             <tr><th>通常率:</th><td id="resultAtackItemNormalRate">100.000%</td></tr>
             <tr><th>攻撃回数:</th><td id="resultAtackItemTimes">-</td></tr>
-            <tr><th>備考:</th><td id="resultAtackItemNote">-</td></tr>
+            <tr><th>攻撃備考:</th><td id="resultAtackItemNote">-</td></tr>
           </table>
         </div>
       </div>
