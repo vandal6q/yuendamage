@@ -1020,7 +1020,7 @@ function resultMagicH() {
   if (friendMagicHStatusAilmentIndex == 6) {
     petrify = 60;
     // スマッシュガストの番号が変更された場合に値の修正が必要
-    if (enemyMagicHAtackIndex == 1) {
+    if (enemyMagicHAtackIndex == 2) {
       petrify = 100;
     }
   }
