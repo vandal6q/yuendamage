@@ -50,6 +50,15 @@ function situationChange() {
   result();
 }
 
+function friendPhysYCharacterChange() {
+  const friendPhysYCharacter = document.getElementsByName('friendPhysYCharacter');
+  const friendHCushionBottleCheck = document.getElementById('friendHCushionBottle').checked;
+  if (friendPhysYCharacter[0].checked && friendHCushionBottleCheck) {
+    document.getElementById('friendHCushionBottle').checked = false;
+  }
+  result();
+}
+
 function friendPhysYAtackChange() {
   const friendPhysYAtack = document.getElementById('friendPhysYAtack').value.split(';');
   if (friendPhysYAtack[0] != 'unselected') {
@@ -280,6 +289,16 @@ function friendMagicHStatusAilmentChange() {
     } else {
       document.getElementById('friendMagicHAilmentElem').checked = false;
     }
+  }
+  result();
+}
+
+function friendHCushionBottleChange() {
+  const friendPhysYCharacter = document.getElementsByName('friendPhysYCharacter');
+  const friendHCushionBottleCheck = document.getElementById('friendHCushionBottle').checked;
+  if (friendPhysYCharacter[0].checked && friendHCushionBottleCheck) {
+    document.getElementsByName('friendPhysYCharacter')[0].checked = false;
+    document.getElementsByName('friendPhysYCharacter')[1].checked = true;
   }
   result();
 }
@@ -769,6 +788,7 @@ function calcAtackItemDamage(rand, itemDamage, def, defPower, levelCorrection, e
 }
 
 function resultPhysY() {
+  const friendPhysYCharacter = document.getElementsByName('friendPhysYCharacter');
   const enemyPhysYPetrifyCheck = document.getElementById('enemyPhysYPetrify').checked;
   const enemyYBalanceBreakCheck = document.getElementById('enemyYBalanceBreak').checked;
   const atk = parseFloat(document.getElementById('friendPhysYAtk').value);
@@ -780,6 +800,12 @@ function resultPhysY() {
   const def = parseFloat(document.getElementById('enemyPhysYDef').value);
   const blo = parseFloat(document.getElementById('enemyPhysYBlo').value);
   const neResist = parseFloat(document.getElementById('enemyPhysYNeResist').value);
+  let randMin = 0.85;
+  let randMax = 1.15;
+  if (friendPhysYCharacter[1].checked) {
+    randMin = 0.8;
+    randMax = 1.2;
+  }
   let petrify = 0;
   if (enemyPhysYPetrifyCheck) {
     petrify = 60;
@@ -794,14 +820,14 @@ function resultPhysY() {
     document.getElementById('resultPhysYBlockDamage').innerText = '-';
   } else {
     document.getElementById('resultPhysYNormalDamage').innerText =
-        String(calcPhysYDamage(100, 0.85, atk, atackAtk, atackPower, elemDamage, typeDamage, def, neResist, petrify, balanceBreak)) +
-        ' ~ ' + String(calcPhysYDamage(100, 1.15, atk, atackAtk, atackPower, elemDamage, typeDamage, def, neResist, petrify, balanceBreak));
+        String(calcPhysYDamage(100, randMin, atk, atackAtk, atackPower, elemDamage, typeDamage, def, neResist, petrify, balanceBreak)) +
+        ' ~ ' + String(calcPhysYDamage(100, randMax, atk, atackAtk, atackPower, elemDamage, typeDamage, def, neResist, petrify, balanceBreak));
     document.getElementById('resultPhysYCriticalDamage').innerText =
-        String(calcPhysYDamage(125, 0.85, atk, atackAtk, atackPower, elemDamage, typeDamage, def, neResist, petrify, balanceBreak)) +
-        ' ~ ' + String(calcPhysYDamage(125, 1.15, atk, atackAtk, atackPower, elemDamage, typeDamage, def, neResist, petrify, balanceBreak));
+        String(calcPhysYDamage(125, randMin, atk, atackAtk, atackPower, elemDamage, typeDamage, def, neResist, petrify, balanceBreak)) +
+        ' ~ ' + String(calcPhysYDamage(125, randMax, atk, atackAtk, atackPower, elemDamage, typeDamage, def, neResist, petrify, balanceBreak));
     document.getElementById('resultPhysYBlockDamage').innerText =
-        String(calcPhysYDamage(75, 0.85, atk, atackAtk, atackPower, elemDamage, typeDamage, def, neResist, petrify, balanceBreak)) +
-        ' ~ ' + String(calcPhysYDamage(75, 1.15, atk, atackAtk, atackPower, elemDamage, typeDamage, def, neResist, petrify, balanceBreak));
+        String(calcPhysYDamage(75, randMin, atk, atackAtk, atackPower, elemDamage, typeDamage, def, neResist, petrify, balanceBreak)) +
+        ' ~ ' + String(calcPhysYDamage(75, randMax, atk, atackAtk, atackPower, elemDamage, typeDamage, def, neResist, petrify, balanceBreak));
   }
   if (Number.isNaN(cri) || Number.isNaN(blo)) {
     document.getElementById('resultPhysYCriticalRate').innerText = '-';

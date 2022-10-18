@@ -24,6 +24,10 @@
         <table><tr><th class="heading">味方</th></tr></table>
         <div id="friendPhysY">
           <table>
+            <tr><th><label><input type="radio" name="friendPhysYCharacter" onchange="friendPhysYCharacterChange()" checked>操作キャラクター</label>
+                    <label><input type="radio" name="friendPhysYCharacter" onchange="friendPhysYCharacterChange()">仲間キャラクター</label></th></tr>
+          </table>
+          <table>
             <tr><th>ATK:</th><td><input type="number" id="friendPhysYAtk" onchange="result()"></td></tr>
             <tr><th>CRI:</th><td><input type="number" id="friendPhysYCri" onchange="result()"></td></tr>
           </table>
@@ -268,7 +272,8 @@
         <div id="friendH" class="item-hidden">
           <table>
             <tr><th><label><input type="checkbox" id="friendHBalanceBreak" onchange="result()">バランスブレイク</label></th></tr>
-            <tr><th><label><input type="checkbox" id="friendHCushionBottle" onchange="result()">クッションボトル(仲間キャラクター)</label></th></tr>
+            <tr><th><label><input type="checkbox" id="friendHCushionBottle" onchange="friendHCushionBottleChange()">クッションボトル(仲間キャラクター)</label>
+                </th></tr>
           </table>
         </div>
         <div id="friendAtackItem" class="item-hidden">
